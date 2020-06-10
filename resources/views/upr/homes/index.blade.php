@@ -26,7 +26,7 @@
             <tr>
               <td>Name</td>
               <td>Address</td>
-              <td>Metri Quadri</td>
+              <td>Square meters</td>
               <td>Services</td>
               <td colspan="3">Actions</td>
             </tr>
