@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Upr;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Home;
+use App\User;
+use App\InfoUser;
 
 class HomeController extends Controller
 {
@@ -14,7 +19,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+      $userId = Auth::id(); // metto in variabile utente registrato
+      // $infoUsers = InfoUser::all(); // find or fail cerca primary key
+      // $infoUser = $infoUsers->where('user_id', $userId);
+      // // dd($user);
+      // if ($userId = $infoUser->user_id) { // se utente LOG e diverso dal creatore della HOME, restuisce errore
+      //   abort('404');
+      // }
+
+      // $homes = Home::findOrFail($userId);
+      $homes = Home::all()->where('user_id', $userId);;
+      // $infoUser = $infoUsers->where('user_id', $userId);
+      // if ($userId != $homes->user_id) {
+      //   abort('Utente non riconosciuto');
+      // }
+
+      return view('upr.homes.index', compact('homes'));
     }
 
     /**
@@ -46,7 +66,9 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+      $home = Home::findOrFail($id);
+
+      return view('upr.homes.show', compact('home'));
     }
 
     /**
