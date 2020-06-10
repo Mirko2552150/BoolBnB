@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request; // inserire eventualmente (relativo Store IMG)
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home'); // commento prova
+
+Route::namespace('Upr')
+->name('upr.')
+->prefix('upr')
+->middleware('auth')
+->group(function (){
+    Route::resource('homes', 'HomeController');
+});
