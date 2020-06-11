@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 use App\Home;
 use App\User;
+use App\Service;
 use App\InfoUser;
 
 class HomeController extends Controller
@@ -44,7 +47,9 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+
+        return view('upr.homes.create', compact('services'));
     }
 
     /**
@@ -55,7 +60,44 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        $path = Storage::disk('public')->put('images', $data['path']);
+        // dd($path);
+        $data['path'] = $path;
+        $data['long'] = '1234';
+        $data['lat'] = '1234';
+        $data['address'] = 'via roma';
+        // dd($data->['path']);
+        $validator = Validator::make($data, [
+            'name' => 'required|string|max:50',
+            'n_rooms' => 'required|integer|min:1|max:20',
+            'n_beds' => 'required|integer|min:1|max:40',
+            'n_bath' => 'required|integer|min:1|max:20',
+            'mq' => 'required|integer|min:20|max:10000',
+            // 'address' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $home = new Home;
+        $home->fill($data);
+        $saved = $home->save();
+
+        if (!$saved) {
+            return redirect()->back()
+            ->with('failure', 'Salvataggio della casa ' . $home->id . ' fallito');
+        }
+
+        return redirect()->route('upr.homes.show', $home->id)
+        ->with('success', 'Salvataggio della casa ' . $home->id . ' riuscito');
+
+
     }
 
     /**
@@ -66,9 +108,15 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-      $home = Home::findOrFail($id);
+        $userId = Auth::id();
+        $home = Home::findOrFail($id);
 
-      return view('upr.homes.show', compact('home'));
+        if ($userId!=$id) {
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'Non sei autorizzato a vedere questa sezione');
+        }
+
+        return view('upr.homes.show', compact('home'));
     }
 
     /**
@@ -102,6 +150,27 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $userId = Auth::id();
+        $home = Home::findOrFail($id);
+
+        if ($userId!=$id) {
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'Non sei autorizzato ad eliminare questa casa');
+        }
+
+        $home->services()->detach();
+        Storage::disk('public')->delete($home['path']);
+        $deleted = $home->delete();
+
+        if (!$deleted) {
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'Cancellazione non avvenuta');
+        }
+
+        return redirect()->route('upr.homes.index')
+        ->with('success', 'Cancellazione della casa ' . $home->id . ' riuscita');
+
+
+
     }
 }

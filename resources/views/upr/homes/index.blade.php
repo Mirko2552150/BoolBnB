@@ -12,13 +12,26 @@
       </div>
     </div>
     <div class="row">
+        <div class="col-12">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif (session('failure'))
+                <div class="alert alert-danger">
+                    {{ session('failure') }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="row">
       <div class="col-12">
         <div class="row">
           <div class="col-6">
             <h2>Homes</h2>
           </div>
           <div class="offset-3 col-3">
-            <a href="#">inserisci nuovo appartamento</a>
+            <a href="{{route('upr.homes.create')}}">inserisci nuovo appartamento</a>
           </div>
         </div>
         <table class="table table-dark">
@@ -52,8 +65,10 @@
                 @endif
                 @if (Auth::id() == $home['user_id'])
                   <td>
-                    <form class="" action="" method="post">
-                      <input class="btn btn-danger" type="submit" name="" value="Elimina">
+                    <form action="{{route('upr.homes.destroy', $home['id'])}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                      <input class="btn btn-danger" type="submit" value="Elimina">
                     </form>
                   </td>
                 @endif

@@ -14,6 +14,19 @@
         </div>
       </div>
       <div class="row">
+          <div class="col-12">
+              @if (session('success'))
+                  <div class="alert alert-success">
+                      {{ session('success') }}
+                  </div>
+              @elseif (session('failure'))
+                  <div class="alert alert-danger">
+                      {{ session('failure') }}
+                  </div>
+              @endif
+          </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <h2>{{$home->name}}</h2>
         </div>
@@ -23,7 +36,7 @@
           {{$home->address}}
         </div>
         <div class="col-4">
-          <img src="{{$home->path}}" alt="{{$home->name}}">
+          <img src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">
         </div>
       </div>
       <div class="row">
