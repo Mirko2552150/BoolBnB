@@ -5,14 +5,19 @@
       <div class="col-12">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Index</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Home</li>
+            <li class="breadcrumb-item"><a href="{{route('guest.homes.index')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
           </ol>
         </nav>
       </div>
     </div>
     <div class="row">
         <div class="col-12">
+            {{-- @if (session('login-success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif --}}
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

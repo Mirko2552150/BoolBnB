@@ -77,7 +77,7 @@ class HomeController extends Controller
             'path' => 'required|string',
             'n_bath' => 'required|integer|min:1|max:20',
             'mq' => 'required|integer|min:20|max:10000',
-            'services' => 'required|array',
+            'services' => 'array',
             'services.*'=> 'exists:services,id',
             // 'address' => 'required|string'
         ]);

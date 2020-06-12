@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $homes = Home::all();
+        return view('guest.index', compact('homes'));
+    }
+
+    public function show($id)
+    {
+        $home = Home::findOrFail($id);
+
+        return view('guest.show', compact('home'));
     }
 }

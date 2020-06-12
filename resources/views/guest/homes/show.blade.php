@@ -7,7 +7,6 @@
            <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{route('guest.homes.index')}}">Home</a></li>
-            <li class="breadcrumb-item " aria-current="page"><a href="{{route('upr.homes.index')}}">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$home->name}}</li>
             </ol>
           </nav>
@@ -15,17 +14,6 @@
       </div>
       {{-- @dd($home->path); --}}
       <div class="row">
-          <div class="col-12">
-              @if (session('success'))
-                  <div class="alert alert-success">
-                      {{ session('success') }}
-                  </div>
-              @elseif (session('failure'))
-                  <div class="alert alert-danger">
-                      {{ session('failure') }}
-                  </div>
-              @endif
-          </div>
       </div>
       <div class="row">
         <div class="col-12">

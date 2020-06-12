@@ -18,9 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/index', 'HomeController@index')->name('guest.index');
+//
+// Route::get('/appartamento/{id}', 'HomeController@index')->name('show.home');
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home'); // commento prova
+Route::get('/upr/homes', 'HomeController@index')->name('homes'); // commento prova
 
 Route::namespace('Upr')
 ->name('upr.')
@@ -28,4 +33,13 @@ Route::namespace('Upr')
 ->middleware('auth')
 ->group(function (){
     Route::resource('homes', 'HomeController');
+});
+
+Route::get('/guest/homes', 'GuestController@index')->name('guest.index');
+
+Route::namespace('Guest')
+->name('guest.')
+->prefix('guest')
+->group(function (){
+    Route::resource('homes', 'GuestController');
 });
