@@ -13,6 +13,7 @@
           </nav>
         </div>
       </div>
+      {{-- @dd($home->path); --}}
       <div class="row">
           <div class="col-12">
               @if (session('success'))

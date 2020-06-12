@@ -34,8 +34,8 @@
             <a href="{{route('upr.homes.create')}}">inserisci nuovo appartamento</a>
           </div>
         </div>
-        <table class="table table-dark">
-          <thead class="thead-dark">
+        <table class="table table-hover table-dark">
+          <thead>
             <tr>
               <td>Name</td>
               <td>Address</td>
@@ -61,7 +61,7 @@
                 </td>
                 <td><a class="btn btn-primary" href="{{route('upr.homes.show', $home->id)}}">Visualizza</a></td>
                 @if (Auth::id() == $home['user_id'])
-                  <td><a class="btn btn-secondary" href="#">Modifica</a></td>
+                  <td><a class="btn btn-secondary" href="{{route('upr.homes.edit', $home->id)}}">Modifica</a></td>
                 @endif
                 @if (Auth::id() == $home['user_id'])
                   <td>

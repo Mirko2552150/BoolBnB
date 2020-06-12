@@ -74,8 +74,11 @@ class HomeController extends Controller
             'name' => 'required|string|max:50',
             'n_rooms' => 'required|integer|min:1|max:20',
             'n_beds' => 'required|integer|min:1|max:40',
+            'path' => 'required|string',
             'n_bath' => 'required|integer|min:1|max:20',
             'mq' => 'required|integer|min:20|max:10000',
+            'services' => 'required|array',
+            'services.*'=> 'exists:services,id',
             // 'address' => 'required|string'
         ]);
 
@@ -91,11 +94,14 @@ class HomeController extends Controller
 
         if (!$saved) {
             return redirect()->back()
-            ->with('failure', 'Salvataggio della casa ' . $home->id . ' fallito');
+            ->with('failure', 'Salvataggio della casa ' . $home->name . ' fallito');
+        }
+        if(isset($data['services'])) {//se esiste il data service faccio attach per collegare la tab. ponte
+            $home->services()->attach($data['services']);
         }
 
         return redirect()->route('upr.homes.show', $home->id)
-        ->with('success', 'Salvataggio della casa ' . $home->id . ' riuscito');
+        ->with('success', 'Salvataggio della casa ' . $home->name . ' riuscito');
 
 
     }
@@ -111,7 +117,7 @@ class HomeController extends Controller
         $userId = Auth::id();
         $home = Home::findOrFail($id);
 
-        if ($userId!=$id) {
+        if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
             ->with('failure', 'Non sei autorizzato a vedere questa sezione');
         }
@@ -127,7 +133,16 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userId = Auth::id();
+        $home = Home::findOrFail($id);
+        $services = Service::all();
+
+        if ($userId!=$home->user_id) {
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'Non sei autorizzato a vedere questa sezione');
+        }
+
+        return view('upr.homes.edit', compact('home', 'services'));
     }
 
     /**
@@ -139,7 +154,50 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $home = Home::findOrfail($id);
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        if (!isset($data->path)) {
+
+
+        }
+        $pathOld = $home->path;
+        Storage::disk('public')->delete($home['path']);
+        $path = Storage::disk('public')->put('images', $data['path']);
+        $data['path'] = $path;
+        $data['long'] = '1234';
+        $data['lat'] = '1234';
+        $data['address'] = 'via roma';
+        // dd($data->['path']);
+        $validator = Validator::make($data, [
+            'name' => 'required|string|max:50',
+            'n_rooms' => 'required|integer|min:1|max:20',
+            'n_beds' => 'required|integer|min:1|max:40',
+            // 'path' => 'required',
+            'n_bath' => 'required|integer|min:1|max:20',
+            'mq' => 'required|integer|min:20|max:10000',
+            'services' => 'required|array',
+            'services.*'=> 'exists:services,id',
+            // 'address' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $home->fill($data);
+        $updated = $home->update();
+        if (!$updated) {
+            return redirect()->back()
+            ->with('failure', 'La modifica della casa ' . $home->name . ' fallito');
+        }
+        $home->services()->sync($data['services']);
+
+        return redirect()->route('upr.homes.show', $home->id)
+        ->with('success', 'Salvataggio della casa ' . $home->name . ' riuscito');
+
     }
 
     /**
@@ -153,7 +211,7 @@ class HomeController extends Controller
         $userId = Auth::id();
         $home = Home::findOrFail($id);
 
-        if ($userId!=$id) {
+        if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
             ->with('failure', 'Non sei autorizzato ad eliminare questa casa');
         }
@@ -168,7 +226,7 @@ class HomeController extends Controller
         }
 
         return redirect()->route('upr.homes.index')
-        ->with('success', 'Cancellazione della casa ' . $home->id . ' riuscita');
+        ->with('success', 'Cancellazione della casa ' . $home->name . ' riuscita');
 
 
 

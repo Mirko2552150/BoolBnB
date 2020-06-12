@@ -37,35 +37,35 @@
                     @method('POST')
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Lorem ipsum" value="{{old('name')}}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{old('name')}}">
                         @error('name')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="n_rooms">Rooms</label>
-                        <input type="number" min="1" max="20" class="form-control" id="n_rooms" name="n_rooms" placeholder="Lorem ipsum dolor sit amet" value="{{old('n_rooms')}}">
+                        <input type="number" min="1" max="20" class="form-control" id="n_rooms" name="n_rooms" placeholder="Inserisci il n° di stanze" value="{{old('n_rooms')}}">
                         @error('n_rooms')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="n_beds">Beds</label>
-                        <input type="number" min="1" max="40" class="form-control" id="n_beds" name="n_beds" placeholder="Lorem ipsum dolor sit amet" value="{{old('n_beds')}}">
+                        <input type="number" min="1" max="40" class="form-control" id="n_beds" name="n_beds" placeholder="Inserisci il N° di letti" value="{{old('n_beds')}}">
                         @error('n_beds')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="n_bath">Bath</label>
-                        <input type="number" min="1" max="20" class="form-control" id="n_bath" name="n_bath" placeholder="Lorem ipsum dolor sit amet" value="{{old('n_bath')}}">
+                        <input type="number" min="1" max="20" class="form-control" id="n_bath" name="n_bath" placeholder="Inserisci il n° Bagni" value="{{old('n_bath')}}">
                         @error('n_bath')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="mq">Mq</label>
-                        <input type="number" min="20" max="10000" class="form-control" id="mq" name="mq" placeholder="Lorem ipsum dolor sit amet" value="{{old('mq')}}">
+                        <input type="number" min="20" max="10000" class="form-control" id="mq" name="mq" placeholder="Inserisci i mq" value="{{old('mq')}}">
                         @error('mq')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
@@ -87,7 +87,7 @@
                     <div class="form-group">
                         <div class="custom-file">
                             <input type="file" name="path" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <label class="custom-file-label" for="inputGroupFile01">Inserisci la foto</label>
                         </div>
                         @error('path')
                             <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
