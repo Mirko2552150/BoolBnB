@@ -34,7 +34,7 @@
             <div class="col-6">
                 <form action="{{route('upr.homes.update', $home->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{old('name') ?? $home->name}}">

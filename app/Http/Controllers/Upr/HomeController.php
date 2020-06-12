@@ -156,15 +156,15 @@ class HomeController extends Controller
     {
         $home = Home::findOrfail($id);
         $data = $request->all();
+        // dd($data['path']);
         $data['user_id'] = Auth::id();
-        if (!isset($data->path)) {
-
-
+        if (isset($data['path'])) {
+            Storage::disk('public')->delete($home['path']);
+            $path = Storage::disk('public')->put('images', $data['path']);
+            $data['path'] = $path;
         }
-        $pathOld = $home->path;
-        Storage::disk('public')->delete($home['path']);
-        $path = Storage::disk('public')->put('images', $data['path']);
-        $data['path'] = $path;
+        // $pathOld = $home->path;
+        // dd($pathOld);
         $data['long'] = '1234';
         $data['lat'] = '1234';
         $data['address'] = 'via roma';
