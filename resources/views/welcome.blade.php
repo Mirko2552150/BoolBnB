@@ -8,7 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <!-- Styles -->
         <style>
             html, body {
@@ -80,18 +81,31 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title m-b-md created">
                     Progetto BoolBnB
                 </div>
+                <div class="title m-b-md">
+                    <h6 class="created">Created By</h6>
+                </div>
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a class="link-user" target="_blank" href="https://github.com/Chri-B"><i class="fab fa-github"></i> Beretta Christian</a>
+                    <a class="link-user" target="_blank" href="https://github.com/Mirko2552150"><i class="fab fa-github"></i> Longo Mirko</a>
+                    <a class="link-user" target="_blank" href="https://github.com/FilippoMailli"><i class="fab fa-github"></i> Mailli Filippo</a>
+                    <a class="link-user" target="_blank" href="https://github.com/Filippo79"><i class="fab fa-github"></i> Pittau Filippo</a>
+                    <style>
+                      .link-user:hover  {
+                        color: red;
+                      }
+                      *  {
+                        color: red;
+                        font-family: courier;
+                        font-size: 160%;
+                      }
+                      .created:hover {
+                        transform: rotateY(360deg);
+                        transition-duration: 5s;
+                      }
+                    </style>
                 </div>
             </div>
         </div>
