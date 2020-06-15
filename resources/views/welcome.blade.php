@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>BollBnB</title>
+        <title>BoolBnB</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -109,5 +109,7 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        {{-- <script src="{{asset('app.js')}}" charset="utf-8"></script> --}}
     </body>
 </html>

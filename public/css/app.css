@@ -10928,3 +10928,11 @@ a.text-dark:focus {
   }
 }
 
+.altezza {
+  height: 300px;
+}
+
+.invisible {
+  display: none;
+}
+

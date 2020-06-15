@@ -61,14 +61,14 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        dd($data);
         $data['user_id'] = Auth::id();
 
         $path = Storage::disk('public')->put('images', $data['path']);
         // dd($path);
         $data['path'] = $path;
-        $data['long'] = '1234';
-        $data['lat'] = '1234';
-        $data['address'] = 'via roma';
+        // $data['long'] = '1234';
+        // $data['lat'] = '1234';
         // dd($data->['path']);
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',
@@ -79,7 +79,9 @@ class HomeController extends Controller
             'mq' => 'required|integer|min:20|max:10000',
             'services' => 'array',
             'services.*'=> 'exists:services,id',
-            // 'address' => 'required|string'
+            'address' => 'required|string',
+            'long' => 'required|string',
+            'lat' => 'required|string',
         ]);
 
         if ($validator->fails()) {

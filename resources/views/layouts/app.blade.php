@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Algolia --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +82,12 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- algolia --}}
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+   <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/instantsearch.js/2.10.1/instantsearch.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0/dist/cdn/placesAutocompleteDataset.min.js"></script>
 </body>
 </html>
