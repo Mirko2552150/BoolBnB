@@ -37,6 +37,7 @@ class MessageController extends Controller
             ->withInput();
         }
 
+
         $message = new Message;
         $message->fill($data);
         $saved = $message->save();
@@ -46,9 +47,7 @@ class MessageController extends Controller
             ->with('failure', 'Invio del messaggio fallito');
         }
 
-        return redirect()->refresh()
+        return redirect()->back()
         ->with('success', 'Invio messaggio riuscito');
     }
-
-    
 }

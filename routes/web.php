@@ -25,8 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/upr/homes', 'HomeController@index')->name('homes');
-
+// rotte UPR
 Route::namespace('Upr')
 ->name('upr.')
 ->prefix('upr')
@@ -36,13 +35,12 @@ Route::namespace('Upr')
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
 });
 
-Route::get('/guest/homes', 'GuestController@index')->name('guest.index');
-
+// rotte GUEST
 Route::namespace('Guest')
 ->name('guest.')
 ->prefix('guest')
 ->group(function (){
-    Route::resource('homes', 'GuestController');
+    Route::get('homes', 'GuestController@index')->name('homes.index');
+    Route::get('homes/{home}', 'GuestController@show')->name('homes.show');
     Route::post('messages', 'MessageController@store')->name('messages.store');
-    // Route::get('messages', 'MessageController@show')->name('messages.show');
 });

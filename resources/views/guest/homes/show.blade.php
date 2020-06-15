@@ -55,14 +55,20 @@
             <div class="form-group">
                 <label for="mail">Email</label>
                 <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com">
-            </div>
-            <div class="form-group invisible">
-                <label for="home_id">Email</label>
-                <input type="number" class="form-control" name="home_id" placeholder="name@example.com" value="{{$home->id}}">
+                @error('mail')
+                    <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="body">Corpo del messaggio</label>
                 <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                @error('body')
+                    <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="form-group invisible">
+                <label for="home_id">home_id</label>
+                <input type="number" class="form-control" name="home_id" placeholder="name@example.com" value="{{$home->id}}">
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Invia messaggio">

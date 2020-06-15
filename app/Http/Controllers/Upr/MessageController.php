@@ -32,7 +32,7 @@ class MessageController extends Controller
         $messageFindorFail = Message::findOrFail($id);
         // dd($message);
         $messages = DB::table('homes')
-            ->leftJoin('messages', 'homes.id', '=', 'messages.home_id')
+            ->rightJoin('messages', 'homes.id', '=', 'messages.home_id')
             ->where('user_id', $userId)
             ->get();
         $message = $messages->where('id',$id)->first();

@@ -101,23 +101,26 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($messages as $key => $message)
-              <tr>
-                <td>{{$message->mail}}</td>
-                <td>{{$message->body}}</td>
-                <td>{{$message->name}}</td>
-                <td>{{$message->created_at}}</td>
-                @if (Auth::id() == $message->user_id)
-                  <td>
-                    <form action="{{route('upr.messages.destroy', $message->id)}}" method="post"> {{-- --}}
-                        @csrf
-                        @method('DELETE')
-                      <input class="btn btn-danger" type="submit" value="Elimina">
-                    </form>
-                  </td>
-                @endif
-              </tr>
-            @endforeach
+            {{-- @if (!empty($messages)) --}}
+                @foreach ($messages as $key => $message)
+                    {{-- @dd($message) --}}
+                  <tr>
+                    <td>{{$message->mail}}</td>
+                    <td>{{$message->body}}</td>
+                    <td>{{$message->name}}</td>
+                    <td>{{$message->created_at}}</td>
+                    @if (Auth::id() == $message->user_id)
+                      <td>
+                        <form action="{{route('upr.messages.destroy', $message->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn btn-danger" type="submit" value="Elimina">
+                        </form>
+                      </td>
+                    @endif
+                  </tr>
+                @endforeach
+            {{-- @endif --}}
           </tbody>
         </table>
       </div>

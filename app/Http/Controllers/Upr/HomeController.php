@@ -28,7 +28,7 @@ class HomeController extends Controller
         $userId = Auth::id();
         $homes = Home::all()->where('user_id', $userId);
         $messages = DB::table('homes')
-            ->leftJoin('messages', 'homes.id', '=', 'messages.home_id')
+            ->rightJoin('messages', 'homes.id', '=', 'messages.home_id')
             ->where('user_id', $userId)
             ->get();
             // dd($messages);
