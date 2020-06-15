@@ -33,7 +33,7 @@ Route::namespace('Upr')
 ->middleware('auth')
 ->group(function (){
     Route::resource('homes', 'HomeController');
-    Route::resource('messages', 'MessageController');
+    Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
 });
 
 Route::get('/guest/homes', 'GuestController@index')->name('guest.index');
@@ -43,4 +43,6 @@ Route::namespace('Guest')
 ->prefix('guest')
 ->group(function (){
     Route::resource('homes', 'GuestController');
+    Route::post('messages', 'MessageController@store')->name('messages.store');
+    // Route::get('messages', 'MessageController@show')->name('messages.show');
 });
