@@ -99,13 +99,11 @@
                     </div>
                     <div class="form-group">
                         <label for="services">Address</label>
+                        <div id="map-example-container" class="altezza"></div>
                         <input type="search" id="input-map" class="form-control" placeholder="Indirizzo Appartamento" value="{{$home->address}}"/>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Salva">
-                    </div>
-                    <div class="col-6 ">
-                        <div id="map-example-container" class="altezza"></div>
                     </div>
                 </form>
             </div>

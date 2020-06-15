@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Upr;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 use App\Home;
 use App\User;
+use App\Message;
 use App\Service;
 use App\InfoUser;
 
@@ -22,22 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $userId = Auth::id(); // metto in variabile utente registrato
-      // $infoUsers = InfoUser::all(); // find or fail cerca primary key
-      // $infoUser = $infoUsers->where('user_id', $userId);
-      // // dd($user);
-      // if ($userId = $infoUser->user_id) { // se utente LOG e diverso dal creatore della HOME, restuisce errore
-      //   abort('404');
-      // }
-
-      // $homes = Home::findOrFail($userId);
-      $homes = Home::all()->where('user_id', $userId);;
-      // $infoUser = $infoUsers->where('user_id', $userId);
-      // if ($userId != $homes->user_id) {
-      //   abort('Utente non riconosciuto');
-      // }
-
-      return view('upr.homes.index', compact('homes'));
+        $userId = Auth::id();
+        $homes = Home::all()->where('user_id', $userId);
+        $messages = DB::table('homes')
+            ->leftJoin('messages', 'homes.id', '=', 'messages.home_id')
+            ->where('user_id', $userId)
+            ->get();
+            // dd($messages);
+        return view('upr.homes.index', compact('homes', 'messages'));
     }
 
     /**
@@ -61,14 +56,14 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
         $data['user_id'] = Auth::id();
 
         $path = Storage::disk('public')->put('images', $data['path']);
         // dd($path);
         $data['path'] = $path;
-        // $data['long'] = '1234';
-        // $data['lat'] = '1234';
+        $data['long'] = '1234';
+        $data['lat'] = '1234';
         // dd($data->['path']);
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',

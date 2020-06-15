@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/upr/homes', 'HomeController@index')->name('homes'); // commento prova
+Route::get('/upr/homes', 'HomeController@index')->name('homes');
 
 Route::namespace('Upr')
 ->name('upr.')
@@ -33,6 +33,7 @@ Route::namespace('Upr')
 ->middleware('auth')
 ->group(function (){
     Route::resource('homes', 'HomeController');
+    Route::resource('messages', 'MessageController');
 });
 
 Route::get('/guest/homes', 'GuestController@index')->name('guest.index');

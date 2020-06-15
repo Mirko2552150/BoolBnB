@@ -83,5 +83,44 @@
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">
+            <h2>Messages</h2>
+          </div>
+        </div>
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <td>Email</td>
+              <td>Testo</td>
+              <td>Nome Appartamento</td>
+              <td>Orario</td>
+              <td colspan="1">Delete</td>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($messages as $key => $message)
+              <tr>
+                <td>{{$message->mail}}</td>
+                <td>{{$message->body}}</td>
+                <td>{{$message->name}}</td>
+                <td>{{$message->created_at}}</td>
+                @if (Auth::id() == $message->user_id)
+                  <td>
+                    <form action="{{route('upr.messages.destroy', $message->id)}}" method="post"> {{-- --}}
+                        @csrf
+                        @method('DELETE')
+                      <input class="btn btn-danger" type="submit" value="Elimina">
+                    </form>
+                  </td>
+                @endif
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 @endsection

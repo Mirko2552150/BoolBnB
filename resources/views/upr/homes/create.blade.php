@@ -96,23 +96,23 @@
                     </div>
                     <div class="form-group">
                         <label for="services">Address</label>
+                        <div id="map-example-container" class="altezza"></div>
                         <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
                     </div>
-                    <div class="form-group invisible">
+                    {{-- <div class="form-group invisible">
                         <label for="services">lng</label>
                         <input id="id_blocco2" type="text" name="lng" class="form-control" value=""/>
                     </div>
                     <div class="form-group invisible">
                         <label for="services">lat</label>
                         <input id="id_blocco" type="text" name="lat" class="form-control" value=""/>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <input id="invia-form" class="btn btn-primary" type="submit" value="Salva">
                     </div>
                 </form>
             </div>
             <div class="col-6 ">
-                <div id="map-example-container" class="altezza"></div>
                 {{-- <div id="id_blocco">
 
                 </div>

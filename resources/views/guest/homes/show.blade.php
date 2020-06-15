@@ -29,14 +29,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          @foreach ($home->services as $service)
-              {{$service->name}}
-              @if (!$loop->last)
-                  ,
-              @endif
-          @endforeach
-        </div>
+            <div class="col-12">
+              @foreach ($home->services as $service)
+                  {{$service->name}}
+                  @if (!$loop->last)
+                      ,
+                  @endif
+              @endforeach
+            </div>
       </div>
+        <form action="#" method="post">
+            @csrf
+            @method('POST')
+            <div class="form-group">
+                <label for="mail">Email</label>
+                <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="body">Corpo del messaggio</label>
+                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+            </div>
+        </form>
     </div>
 @endsection
