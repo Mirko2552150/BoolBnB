@@ -46,6 +46,7 @@
               <td>Address</td>
               <td>Square meters</td>
               <td>Services</td>
+              <td>Preview Photo</td>
               <td colspan="3">Actions</td>
             </tr>
           </thead>
@@ -64,6 +65,7 @@
                     @endif
                   @endforeach
                 </td>
+                <td><img style="width:100px;" class="card-img-top" alt="Responsive image" src="{{asset('storage/' . $home->path)}}"></td>
                 <td><a class="btn btn-primary" href="{{route('upr.homes.show', $home->id)}}">Visualizza</a></td>
                 @if (Auth::id() == $home['user_id'])
                   <td><a class="btn btn-secondary" href="{{route('upr.homes.edit', $home->id)}}">Modifica</a></td>

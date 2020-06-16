@@ -37,7 +37,7 @@
           {{$home->address}}
         </div>
         <div class="col-4">
-          <img src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">
+          <img class="img-fluid" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
         </div>
       </div>
       <div class="row">
