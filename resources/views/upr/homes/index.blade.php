@@ -92,7 +92,7 @@
             <h2>Messages</h2>
           </div>
         </div>
-        <table class="table table-hover table-dark">
+        <table class="table table-hover table-info">
           <thead>
             <tr>
               <td>Email</td>

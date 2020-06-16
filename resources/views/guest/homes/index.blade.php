@@ -12,16 +12,18 @@
         </div>
         <div class="row">
             <div class="col-12">
-                @foreach ($homes as $key => $home)
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">
-                        <div class="card-body">
-                            <h5 class="card-title">{!!$home->name!!}</h5>
-                            <p class="card-text">Descrizione appartamento</p>
-                            <a href="{{route('guest.homes.show', $home->id)}}" class="btn btn-primary">Visualizza appartamento</a>
+                <div class="card-deck">
+                    @foreach ($homes as $key => $home)
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{!!$home->name!!}</h5>
+                                <p class="card-text">Descrizione appartamento</p>
+                                <a href="{{route('guest.homes.show', $home->id)}}" class="btn btn-primary">Visualizza appartamento</a>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
