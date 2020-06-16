@@ -66,6 +66,9 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('upr.homes.index') }}">
+                                        Dashboard
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -81,10 +84,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @yield('script')
     </div>
 
     {{-- algolia --}}
-    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+   <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
    <script src="https://cdn.jsdelivr.net/instantsearch.js/2.10.1/instantsearch.min.js"></script>
    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.js"></script>

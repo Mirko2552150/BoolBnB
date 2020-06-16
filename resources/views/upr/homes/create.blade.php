@@ -81,7 +81,7 @@
                             @endforeach
                         </div>
                         @error('services')
-                            <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+                          <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -95,42 +95,23 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="services">Address</label>
+                        <label for="address">Address</label>
                         <div id="map-example-container" class="altezza"></div>
                         <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
                     </div>
-                    {{-- <div class="form-group invisible">
-                        <label for="services">lng</label>
-                        <input id="id_blocco2" type="text" name="lng" class="form-control" value=""/>
+                    <div class="form-group invisible">
+                        <label for="long">long</label>
+                        <input id="long" type="text" name="long" class="form-control"/>
                     </div>
                     <div class="form-group invisible">
-                        <label for="services">lat</label>
-                        <input id="id_blocco" type="text" name="lat" class="form-control" value=""/>
-                    </div> --}}
+                        <label for="lat">lat</label>
+                        <input id="lat" type="text" name="lat" class="form-control"/>
+                    </div>
                     <div class="form-group">
                         <input id="invia-form" class="btn btn-primary" type="submit" value="Salva">
                     </div>
                 </form>
             </div>
-            <div class="col-6 ">
-                {{-- <div id="id_blocco">
-
-                </div>
-                <div id="id_blocco2">
-
-                </div> --}}
-            </div>
-
         </div>
     </div>
-    {{-- <script>
-        $('#input-map').on('keyup', function (event) {
-            var coordinates = {
-                lat : markers[0]._latlng.lat,
-                lng : markers[0]._latlng.lng
-            };
-            $('#id_blocco').html(lat);
-            $('#id_blocco2').html(lng);
-        });
-    </script> --}}
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-  {{-- @dd($home) --}}
+  {{-- @dd($home->address) --}}
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -40,40 +40,49 @@
         </div>
       </div>
       <div class="row">
-            <div class="col-12">
-              @foreach ($home->services as $service)
-                  {{$service->name}}
-                  @if (!$loop->last)
-                      ,
-                  @endif
-              @endforeach
-            </div>
+        <div class="col-12">
+          @foreach ($home->services as $service)
+              {{$service->name}}
+              @if (!$loop->last)
+                  ,
+              @endif
+          @endforeach
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+              <label for="address">Address</label>
+              <div id="map-example-container" class="altezza"></div>
+              <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+          </div>
+        </div>
       </div>
         <form action="{{route('guest.messages.store')}}" method="post">
-            @csrf
-            @method('POST')
-            <div class="form-group">
-                <label for="mail">Email</label>
-                <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com"
-                value="@if (isset($user)){{$user->email}}@endif">
-                @error('mail')
-                    <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="body">Corpo del messaggio</label>
-                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
-                @error('body')
-                    <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="form-group invisible">
-                <label for="home_id">home_id</label>
-                <input type="number" class="form-control" name="home_id" placeholder="name@example.com" value="{{$home->id}}">
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Invia messaggio">
-            </div>
-        </form>
+          @csrf
+          @method('POST')
+          <div class="form-group">
+              <label for="mail">Email</label>
+              <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com"
+              value="@if (isset($user)){{$user->email}}@endif">
+              @error('mail')
+                  <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+              @enderror
+          </div>
+          <div class="form-group">
+              <label for="body">Corpo del messaggio</label>
+              <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+              @error('body')
+                  <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+              @enderror
+          </div>
+          <div class="form-group invisible">
+              <label for="home_id">home_id</label>
+              <input type="number" class="form-control" name="home_id" placeholder="name@example.com" value="{{$home->id}}">
+          </div>
+          <div class="form-group">
+              <input class="btn btn-primary" type="submit" value="Invia messaggio">
+          </div>
+      </form>
     </div>
 @endsection

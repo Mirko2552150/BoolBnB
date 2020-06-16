@@ -58,12 +58,14 @@ class HomeController extends Controller
         $data = $request->all();
         // dd($data);
         $data['user_id'] = Auth::id();
+        if (!isset($data['path'])) {
+          return redirect()->back()
+          ->with('failure', 'Inserisci una foto');
+        }
 
         $path = Storage::disk('public')->put('images', $data['path']);
         // dd($path);
         $data['path'] = $path;
-        $data['long'] = '1234';
-        $data['lat'] = '1234';
         // dd($data->['path']);
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',

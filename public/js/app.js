@@ -37225,6 +37225,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+// RELATIVO ALLA MAPPA
 var placesAutocomplete = places({
   appId: 'plVDX21IBPXQ',
   apiKey: 'a8de2e8e20b7ff08907af0462c505d74',
@@ -37239,7 +37240,11 @@ var osmLayer = new L.TileLayer('https://api.tomtom.com/map/1/tile/basic/main/{z}
   maxZoom: 20
 });
 var markers = [];
-map.setView(new L.LatLng(0, 0), 1);
+var tessera = L.marker([45.505278, 12.351944]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
+
+map.setView(new L.LatLng(0, 0), 1); // PUNTO INIZIALE MAPS CON ZOOM
+// map.setView(new L.LatLng(45.505278, 12.351944), 15); // PUNTO INIZIALE MAPS CON ZOOM
+
 map.addLayer(osmLayer);
 placesAutocomplete.on('suggestions', handleOnSuggestions);
 placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
@@ -37305,17 +37310,34 @@ function findBestZoom() {
   map.fitBounds(featureGroup.getBounds().pad(0.5), {
     animate: true
   });
-} // console.log(markers);
+} // AL CLICK O INVIO SULLA RICERCA MAPPA
 
 
-$('#input-map').on('click', '#invia-form', function (event) {
-  var lat = markers[0]._latlng.lat; //  poi prendo direttamente la latitudine
+$('#input-map').on('keyup', function (event) {
+  if (event.key == 'Enter') {
+    // le righe seguenti vengono eseguite solo dopo pressione tasto enter
+    var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
 
-  var _long = markers[0]._latlng.lng; // e la longitudine dell'indirizzo selezionato
+    var mark = markers[0];
+    var lat = mark._latlng.lat;
+    var _long = mark._latlng.lng; // console.log(lat, long);
 
-  $('#id_blocco').val(lat);
-  $('#id_blocco2').val(_long);
+    $('#lat').val(lat);
+    $('#long').val(_long);
+  }
 });
+$('#algolia-places-listbox-0').on('click', function (event) {
+  var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
+
+  var mark = markers[0];
+  var lat = mark._latlng.lat;
+  var _long2 = mark._latlng.lng; // console.log(lat, long);
+
+  $('#lat').val(lat);
+  $('#long').val(_long2);
+  console.log(markers);
+});
+var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
 
 /***/ }),
 
@@ -37328,7 +37350,7 @@ $('#input-map').on('click', '#invia-form', function (event) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./algolia */ "./resources/js/algolia.js");
+__webpack_require__(/*! ./algolia */ "./resources/js/algolia.js"); // require('./showAlgolia');
 
 /***/ }),
 
@@ -37395,8 +37417,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
