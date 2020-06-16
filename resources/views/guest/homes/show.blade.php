@@ -54,7 +54,8 @@
             @method('POST')
             <div class="form-group">
                 <label for="mail">Email</label>
-                <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com">
+                <input type="mail" class="form-control" id="mail" name="mail" placeholder="name@example.com"
+                value="@if (isset($user)){{$user->email}}@endif">
                 @error('mail')
                     <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
                 @enderror

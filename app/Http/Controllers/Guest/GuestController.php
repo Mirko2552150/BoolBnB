@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use App\Home;
 use App\User;
@@ -33,6 +36,13 @@ class GuestController extends Controller
     public function show($id)
     {
         $home = Home::findOrFail($id);
+
+        if (Auth::check()) {
+          $userId = Auth::id();
+          $user = User::findOrFail($userId);
+          return view('guest.homes.show', compact('home', 'user'));
+        }
+
 
         return view('guest.homes.show', compact('home'));
     }
