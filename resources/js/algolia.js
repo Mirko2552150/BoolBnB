@@ -1,4 +1,3 @@
-
 if ($('#map-example-container').length > 0) { // SE l'id ESISTE (e quindi ha una length) allora eseguo i comandi sotto
     // RELATIVO ALLA MAPPA
     var placesAutocomplete = places({
@@ -20,21 +19,15 @@ if ($('#map-example-container').length > 0) { // SE l'id ESISTE (e quindi ha una
     }
     );
 
-<<<<<<< Updated upstream
     var markers = [];
-=======
-var tessera = L.marker([lat, long]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
-map.setView(new L.LatLng(lat, long), 15); // PUNTO INIZIALE MAPS CON ZOOM
-// map.setView(new L.LatLng(45.505278, 12.351944), 15); // PUNTO INIZIALE MAPS CON ZOOM
->>>>>>> Stashed changes
 
     if ($('#lat-valore').length > 0) { // se l'id esiste (e quindi ha una length) allora eseguo i comandi sotto
         $('.algolia-places').addClass('invisible');
         var lat = $('#lat-valore').val();
         var long = $('#long-valore').val();
         // console.log(long);
-        var tessera = L.marker([long, lat]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
-        map.setView(new L.LatLng(long, lat), 16); // PUNTO INIZIALE MAPS CON ZOOM
+        var tessera = L.marker([lat, long]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
+        map.setView(new L.LatLng(lat, long), 10); // PUNTO INIZIALE MAPS CON ZOOM
     } else {
         map.setView(new L.LatLng(0, 0), 1); // PUNTO default iniziale
     }
@@ -90,29 +83,16 @@ map.setView(new L.LatLng(lat, long), 15); // PUNTO INIZIALE MAPS CON ZOOM
       });
     }
 
-<<<<<<< Updated upstream
     function addMarker(suggestion) {
         var marker = L.marker(suggestion.latlng, {opacity: .4});
         marker.addTo(map);
         markers.push(marker);
     }
-=======
-$('#algolia-places-listbox-0').on('click', function (event) {
-  var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
-  var mark = markers[0];
-  var lat = mark._latlng.lat;
-  var long = mark._latlng.lng;
-  // console.log(lat, long);
-  $('#lat').val(lat);
-  $('#long').val(long);
-  // console.log(markers);
->>>>>>> Stashed changes
 
     function removeMarker(marker) {
         map.removeLayer(marker);
     }
 
-<<<<<<< Updated upstream
     function findBestZoom() {
         var featureGroup = L.featureGroup(markers);
         map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: true});
@@ -140,25 +120,10 @@ $('#algolia-places-listbox-0').on('click', function (event) {
       // console.log(lat, long);
       $('#lat').val(lat);
       $('#long').val(long);
-      // console.log(markers);
+      console.log(markers);
 
     });
 
 
-    var posizione = $('#input-map-show').v22al(); // così prendo il valore dell’input => indirizzo selezionato
+    var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
 }
-=======
-var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
-
-$('#algolia-places-listbox-0').on('click', function (event) {
-  var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
-  var mark = markers[0];
-  var lat = mark._latlng.lat;
-  var long = mark._latlng.lng;
-  // console.log(lat, long);
-  $('#lat').val(lat);
-  $('#long').val(long);
-  // console.log(markers);
-
-});
->>>>>>> Stashed changes
