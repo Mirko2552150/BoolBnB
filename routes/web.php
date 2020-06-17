@@ -33,6 +33,7 @@ Route::namespace('Upr')
 ->group(function (){
     Route::resource('homes', 'HomeController');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
+    Route::post('stats/{home_id}', 'StatController@store')->name('stats.store');
 });
 
 // rotte GUEST

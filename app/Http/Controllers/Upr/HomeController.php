@@ -15,6 +15,7 @@ use App\User;
 use App\Message;
 use App\Service;
 use App\InfoUser;
+use App\Stat;
 
 class HomeController extends Controller
 {
@@ -214,6 +215,11 @@ class HomeController extends Controller
         foreach ($messages as $message) {
             $message->delete();
         }
+        $stats = Stat::all()->where('home_id', $home->id);
+        // dd($messages);
+        foreach ($stats as $stat) {
+            $stat->delete();
+        }
 
         if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
@@ -221,7 +227,6 @@ class HomeController extends Controller
         }
 
         $home->services()->detach();
-        $home->message()->dissociate();
         Storage::disk('public')->delete($home['path']);
         $deleted = $home->delete();
 

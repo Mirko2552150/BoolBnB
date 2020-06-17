@@ -19,7 +19,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">{!!$home->name!!}</h5>
                                 <p class="card-text">Descrizione appartamento</p>
-                                <a href="{{route('guest.homes.show', $home->id)}}" class="btn btn-primary">Visualizza appartamento</a>
+                                <form action="{{route('upr.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    {{-- <div class="form-group">
+                                        <input type="number" class="invisible" name="home_id" value="{{$home->id}}">
+                                    </div> --}}
+                                    <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                                </form>
                             </div>
                         </div>
                     @endforeach

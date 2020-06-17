@@ -10,10 +10,6 @@ use App\Message;
 
 class MessageController extends Controller
 {
-    // public function create()
-    // {
-    //     return view('guest.messages.create');
-    // }
     /**
      * Store a newly created resource in storage.
      *
