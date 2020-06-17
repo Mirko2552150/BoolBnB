@@ -37308,7 +37308,6 @@ if ($('#map-example-container').length > 0) {
 
   if ($('#lat-valore').length > 0) {
     // se l'id esiste (e quindi ha una length) allora eseguo i comandi sotto
-    $('.algolia-places').addClass('invisible');
     var lat = $('#lat-valore').val();
 
     var _long = $('#long-valore').val(); // console.log(long);
@@ -37317,6 +37316,11 @@ if ($('#map-example-container').length > 0) {
     var tessera = L.marker([lat, _long]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
 
     map.setView(new L.LatLng(lat, _long), 10); // PUNTO INIZIALE MAPS CON ZOOM
+
+    if ($('#input-map').hasClass('invisible')) {
+      // se nel mio html ho un input invisibile, rendo invisibile anche il segnalino vicino
+      $('.algolia-places').addClass('invisible');
+    }
   } else {
     map.setView(new L.LatLng(0, 0), 1); // PUNTO default iniziale
   }

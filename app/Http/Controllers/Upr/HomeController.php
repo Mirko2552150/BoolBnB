@@ -157,18 +157,14 @@ class HomeController extends Controller
         $home = Home::findOrfail($id);
         $data = $request->all();
         // dd($data['path']);
+        // dd($data);
         $data['user_id'] = Auth::id();
         if (isset($data['path'])) {
             Storage::disk('public')->delete($home['path']);
             $path = Storage::disk('public')->put('images', $data['path']);
             $data['path'] = $path;
         }
-        // $pathOld = $home->path;
-        // dd($pathOld);
-        $data['long'] = '1234';
-        $data['lat'] = '1234';
-        $data['address'] = 'via roma';
-        // dd($data->['path']);
+
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',
             'n_rooms' => 'required|integer|min:1|max:20',
@@ -178,7 +174,9 @@ class HomeController extends Controller
             'mq' => 'required|integer|min:20|max:10000',
             'services' => 'required|array',
             'services.*'=> 'exists:services,id',
-            // 'address' => 'required|string'
+            'address' => 'required|string',
+            'long' => 'required|string',
+            'lat' => 'required|string',
         ]);
 
         if ($validator->fails()) {

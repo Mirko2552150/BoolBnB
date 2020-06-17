@@ -100,7 +100,15 @@
                     <div class="form-group">
                         <label for="services">Address</label>
                         <div id="map-example-container" class="altezza"></div>
-                        <input type="search" id="input-map" class="form-control" placeholder="Indirizzo Appartamento" value="{{$home->address}}"/>
+                        <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento" value="{{old('address') ?? $home->address}}"/>
+                    </div>
+                    <div class="form-group invisible">
+                        <label for="long">long</label>
+                        <input id="long-valore" type="text" name="long" class="form-control" value="{{old('long') ?? $home->long}}"/>
+                    </div>
+                    <div class="form-group invisible">
+                        <label for="lat">lat</label>
+                        <input id="lat-valore" type="text" name="lat" class="form-control" value="{{old('lat') ?? $home->lat}}"/>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Salva">
