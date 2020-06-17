@@ -37225,119 +37225,132 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// RELATIVO ALLA MAPPA
-var placesAutocomplete = places({
-  appId: 'plVDX21IBPXQ',
-  apiKey: 'a8de2e8e20b7ff08907af0462c505d74',
-  container: document.querySelector('#input-map')
-});
-var map = L.map('map-example-container', {
-  scrollWheelZoom: true,
-  zoomControl: true
-});
-var osmLayer = new L.TileLayer('https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=MOZx4LKXnjKwAAouxzQpxbZ5Y6GsEPwr&view=Unified', {
-  minZoom: 1,
-  maxZoom: 20
-});
-var markers = [];
-var tessera = L.marker([45.505278, 12.351944]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
+if ($('#map-example-container').length > 0) {
+  var handleOnSuggestions = function handleOnSuggestions(e) {
+    markers.forEach(removeMarker);
+    markers = [];
 
-map.setView(new L.LatLng(0, 0), 1); // PUNTO INIZIALE MAPS CON ZOOM
-// map.setView(new L.LatLng(45.505278, 12.351944), 15); // PUNTO INIZIALE MAPS CON ZOOM
+    if (e.suggestions.length === 0) {
+      map.setView(new L.LatLng(0, 0), 1);
+      return;
+    }
 
-map.addLayer(osmLayer);
-placesAutocomplete.on('suggestions', handleOnSuggestions);
-placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
-placesAutocomplete.on('change', handleOnChange);
-placesAutocomplete.on('clear', handleOnClear);
+    e.suggestions.forEach(addMarker);
+    findBestZoom();
+  };
 
-function handleOnSuggestions(e) {
-  markers.forEach(removeMarker);
-  markers = [];
+  var handleOnChange = function handleOnChange(e) {
+    markers.forEach(function (marker, markerIndex) {
+      if (markerIndex === e.suggestionIndex) {
+        markers = [marker];
+        marker.setOpacity(1);
+        findBestZoom();
+      } else {
+        removeMarker(marker);
+      }
+    });
+  };
 
-  if (e.suggestions.length === 0) {
+  var handleOnClear = function handleOnClear() {
     map.setView(new L.LatLng(0, 0), 1);
-    return;
+    markers.forEach(removeMarker);
+  };
+
+  var handleOnCursorchanged = function handleOnCursorchanged(e) {
+    markers.forEach(function (marker, markerIndex) {
+      if (markerIndex === e.suggestionIndex) {
+        marker.setOpacity(1);
+        marker.setZIndexOffset(1000);
+      } else {
+        marker.setZIndexOffset(0);
+        marker.setOpacity(0.5);
+      }
+    });
+  };
+
+  var addMarker = function addMarker(suggestion) {
+    var marker = L.marker(suggestion.latlng, {
+      opacity: .4
+    });
+    marker.addTo(map);
+    markers.push(marker);
+  };
+
+  var removeMarker = function removeMarker(marker) {
+    map.removeLayer(marker);
+  };
+
+  var findBestZoom = function findBestZoom() {
+    var featureGroup = L.featureGroup(markers);
+    map.fitBounds(featureGroup.getBounds().pad(0.5), {
+      animate: true
+    });
+  }; // AL CLICK O INVIO SULLA RICERCA MAPPA
+
+
+  // SE l'id ESISTE (e quindi ha una length) allora eseguo i comandi sotto
+  // RELATIVO ALLA MAPPA
+  var placesAutocomplete = places({
+    appId: 'plVDX21IBPXQ',
+    apiKey: 'a8de2e8e20b7ff08907af0462c505d74',
+    container: document.querySelector('#input-map')
+  });
+  var map = L.map('map-example-container', {
+    scrollWheelZoom: true,
+    zoomControl: true
+  });
+  var osmLayer = new L.TileLayer('https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=MOZx4LKXnjKwAAouxzQpxbZ5Y6GsEPwr&view=Unified', {
+    minZoom: 1,
+    maxZoom: 18
+  });
+  var markers = [];
+
+  if ($('#lat-valore').length > 0) {
+    // se l'id esiste (e quindi ha una length) allora eseguo i comandi sotto
+    $('.algolia-places').addClass('invisible');
+    var lat = $('#lat-valore').val();
+
+    var _long = $('#long-valore').val(); // console.log(long);
+
+
+    var tessera = L.marker([_long, lat]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
+
+    map.setView(new L.LatLng(_long, lat), 16); // PUNTO INIZIALE MAPS CON ZOOM
+  } else {
+    map.setView(new L.LatLng(0, 0), 1); // PUNTO default iniziale
   }
 
-  e.suggestions.forEach(addMarker);
-  findBestZoom();
-}
+  map.addLayer(osmLayer);
+  placesAutocomplete.on('suggestions', handleOnSuggestions);
+  placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
+  placesAutocomplete.on('change', handleOnChange);
+  placesAutocomplete.on('clear', handleOnClear);
+  $('#input-map').on('keyup', function (event) {
+    if (event.key == 'Enter') {
+      // le righe seguenti vengono eseguite solo dopo pressione tasto enter
+      var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
 
-function handleOnChange(e) {
-  markers.forEach(function (marker, markerIndex) {
-    if (markerIndex === e.suggestionIndex) {
-      markers = [marker];
-      marker.setOpacity(1);
-      findBestZoom();
-    } else {
-      removeMarker(marker);
+      var mark = markers[0];
+      var lat = mark._latlng.lat;
+      var _long2 = mark._latlng.lng; // console.log(lat, long);
+
+      $('#lat').val(lat);
+      $('#long').val(_long2);
     }
   });
-}
-
-function handleOnClear() {
-  map.setView(new L.LatLng(0, 0), 1);
-  markers.forEach(removeMarker);
-}
-
-function handleOnCursorchanged(e) {
-  markers.forEach(function (marker, markerIndex) {
-    if (markerIndex === e.suggestionIndex) {
-      marker.setOpacity(1);
-      marker.setZIndexOffset(1000);
-    } else {
-      marker.setZIndexOffset(0);
-      marker.setOpacity(0.5);
-    }
-  });
-}
-
-function addMarker(suggestion) {
-  var marker = L.marker(suggestion.latlng, {
-    opacity: .4
-  });
-  marker.addTo(map);
-  markers.push(marker);
-}
-
-function removeMarker(marker) {
-  map.removeLayer(marker);
-}
-
-function findBestZoom() {
-  var featureGroup = L.featureGroup(markers);
-  map.fitBounds(featureGroup.getBounds().pad(0.5), {
-    animate: true
-  });
-} // AL CLICK O INVIO SULLA RICERCA MAPPA
-
-
-$('#input-map').on('keyup', function (event) {
-  if (event.key == 'Enter') {
-    // le righe seguenti vengono eseguite solo dopo pressione tasto enter
+  $('#algolia-places-listbox-0').on('click', function (event) {
     var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
 
     var mark = markers[0];
     var lat = mark._latlng.lat;
-    var _long = mark._latlng.lng; // console.log(lat, long);
+    var _long3 = mark._latlng.lng; // console.log(lat, long);
 
     $('#lat').val(lat);
-    $('#long').val(_long);
-  }
-});
-$('#algolia-places-listbox-0').on('click', function (event) {
-  var posizione = $('#input-map').val(); // così prendo il valore dell’input => indirizzo selezionato
-
-  var mark = markers[0];
-  var lat = mark._latlng.lat;
-  var _long2 = mark._latlng.lng; // console.log(lat, long);
-
-  $('#lat').val(lat);
-  $('#long').val(_long2);
-  console.log(markers);
-});
-var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
+    $('#long').val(_long3);
+    console.log(markers);
+  });
+  var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
+}
 
 /***/ }),
 
@@ -37417,8 +37430,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

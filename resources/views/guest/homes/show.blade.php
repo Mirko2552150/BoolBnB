@@ -54,7 +54,7 @@
           <div class="form-group">
               <label for="address">Address</label>
               <div id="map-example-container" class="altezza"></div>
-              <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+              <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
           </div>
         </div>
       </div>
@@ -79,6 +79,14 @@
           <div class="form-group invisible">
               <label for="home_id">home_id</label>
               <input type="number" class="form-control" name="home_id" placeholder="name@example.com" value="{{$home->id}}">
+          </div>
+          <div class="form-group invisible">
+              <label for="home_id">lat</label>
+              <input type="number" class="form-control" id="lat-valore" name="home_id" placeholder="name@example.com" value="{{$home->lat}}">
+          </div>
+          <div class="form-group invisible">
+              <label for="home_id">long</label>
+              <input type="number" class="form-control" id="long-valore" name="home_id" placeholder="name@example.com" value="{{$home->long}}">
           </div>
           <div class="form-group">
               <input class="btn btn-primary" type="submit" value="Invia messaggio">

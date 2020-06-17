@@ -209,6 +209,11 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
         $home = Home::findOrFail($id);
+        $messages = Message::all()->where('home_id', $home->id);
+        // dd($messages);
+        foreach ($messages as $message) {
+            $message->delete();
+        }
 
         if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
@@ -216,6 +221,7 @@ class HomeController extends Controller
         }
 
         $home->services()->detach();
+        $home->message()->dissociate();
         Storage::disk('public')->delete($home['path']);
         $deleted = $home->delete();
 
