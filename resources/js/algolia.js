@@ -3,11 +3,12 @@ if ($('#map-example-container').length > 0) { // SE l'id ESISTE (e quindi ha una
     var placesAutocomplete = places({
     appId: 'plVDX21IBPXQ',
     apiKey: 'a8de2e8e20b7ff08907af0462c505d74',
+    // container: null,
     container: document.querySelector('#input-map')
     });
 
     var map = L.map('map-example-container', {
-    scrollWheelZoom: true,
+    scrollWheelZoom: false,
     zoomControl: true
 
     });

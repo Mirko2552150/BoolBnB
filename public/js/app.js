@@ -37293,10 +37293,11 @@ if ($('#map-example-container').length > 0) {
   var placesAutocomplete = places({
     appId: 'plVDX21IBPXQ',
     apiKey: 'a8de2e8e20b7ff08907af0462c505d74',
+    // container: null,
     container: document.querySelector('#input-map')
   });
   var map = L.map('map-example-container', {
-    scrollWheelZoom: true,
+    scrollWheelZoom: false,
     zoomControl: true
   });
   var osmLayer = new L.TileLayer('https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=MOZx4LKXnjKwAAouxzQpxbZ5Y6GsEPwr&view=Unified', {
