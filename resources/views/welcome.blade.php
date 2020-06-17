@@ -102,6 +102,7 @@
                         color: red;
                         font-family: courier;
                         font-size: 160%;
+                        background-color: #f4f2f8;
                       }
                       .created:hover {
                         transform: rotateY(360deg);

@@ -140,12 +140,12 @@ $('#algolia-places-listbox-0').on('click', function (event) {
       // console.log(lat, long);
       $('#lat').val(lat);
       $('#long').val(long);
-      console.log(markers);
+      // console.log(markers);
 
     });
 
 
-    var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato
+    var posizione = $('#input-map-show').v22al(); // così prendo il valore dell’input => indirizzo selezionato
 }
 =======
 var posizione = $('#input-map-show').val(); // così prendo il valore dell’input => indirizzo selezionato

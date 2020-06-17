@@ -39,9 +39,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                      <img class="logo" src="https://png2.cleanpng.com/sh/b260419f8db2c75b86cbbd4d0be6fe75/L0KzQYm3VsA5N5NrjZH0aYP2gLBuTfFqepNzep91b3fyPcTojr1nepJze9t8Y3AwhMPolvVtNZl0jNd1LXHsgrP1gr1td5h0RadrMXG1cYPqVsJnbpM7RqcENEW2QYe3UcUzQGU5SaUDOESzRYa1kP5o/kisspng-airbnb-logo-san-francisco-travel-hotel-airbnb-logo-5b1a2a2c62ffb6.5945316015284413884055.png" alt="">
                     </ul>
-
+                    <style>
+                      .logo {
+                        width: 10%;
+                      }
+                    </style>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
