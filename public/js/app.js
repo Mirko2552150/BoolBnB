@@ -37359,6 +37359,67 @@ if ($('#map-example-container').length > 0) {
 
 /***/ }),
 
+/***/ "./resources/js/apijs.js":
+/*!*******************************!*\
+  !*** ./resources/js/apijs.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// console.log('test');
+// $.ajax({
+//     'url' : '/api/stats',
+//     'method' : 'GET',
+//     'headers' : {
+//         'authorization' : 'Bearer Pippo?123'
+//     },
+//     'success' : function(response) {
+//         console.log(response);
+//     },
+//     'error' : function(errors) {
+//         console.log(errors);
+//     }
+axios.get('/api/stats', {
+  'headers': {
+    'Authorization': 'Bearer Pippo?123',
+    'Content-Type': 'application/json'
+  }
+}).then(function (response) {
+  var counter = 0; // handle success
+  // console.log(response);
+
+  var data = response['data']; // console.log(data);
+
+  var dato = data.data;
+
+  var grouped = _.mapValues(_.groupBy(dato, 'home_id'), function (clist) {
+    return clist.map(function (dato) {
+      return _.omit(dato, 'updated_at');
+    });
+  });
+
+  console.log(grouped);
+
+  for (var key in grouped) {
+    console.log(grouped[key].home_id + ' ' + grouped[key].length);
+  }
+
+  for (var i = 0; i < grouped.length; i++) {// for (var key in dato[i]) {
+    //     var idMessaggio = dato[i].id;
+    //     var idHome = dato[i].home_id;
+    //     var creazione = dato[i].created_at;
+    // }
+    // console.log('id ' + idMessaggio);
+    // console.log('casa ' + idHome);
+    // console.log('data ' + creazione);
+  }
+})["catch"](function (error) {
+  // handle error
+  console.log(error);
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37368,7 +37429,9 @@ if ($('#map-example-container').length > 0) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./algolia */ "./resources/js/algolia.js"); // require('./showAlgolia');
+__webpack_require__(/*! ./algolia */ "./resources/js/algolia.js");
+
+__webpack_require__(/*! ./apijs */ "./resources/js/apijs.js");
 
 /***/ }),
 
@@ -37435,8 +37498,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/boolean/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\boolean\clone\BoolBnB\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\boolean\clone\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -26,6 +26,9 @@ return [
     |
     */
 
+
+    'api_key' => env('API_AUTH'),
+
     'env' => env('APP_ENV', 'production'),
 
     /*
@@ -229,7 +232,7 @@ return [
 
     ],
 
-    'api_key' => env('API_AUTH', ''),
+
 
 
 ];
