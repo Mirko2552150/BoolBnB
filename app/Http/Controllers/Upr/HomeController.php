@@ -94,14 +94,14 @@ class HomeController extends Controller
 
         if (!$saved) {
             return redirect()->back()
-            ->with('failure', 'Salvataggio della casa ' . $home->name . ' fallito');
+            ->with('failure', 'Salvataggio ' . $home->name . ' fallito');
         }
         if(isset($data['services'])) {//se esiste il data service faccio attach per collegare la tab. ponte
             $home->services()->attach($data['services']);
         }
 
         return redirect()->route('upr.homes.show', $home->id)
-        ->with('success', 'Salvataggio della casa ' . $home->name . ' riuscito');
+        ->with('success', 'Salvataggio ' . $home->name . ' riuscito');
 
 
     }
@@ -191,12 +191,12 @@ class HomeController extends Controller
         $updated = $home->update();
         if (!$updated) {
             return redirect()->back()
-            ->with('failure', 'La modifica della casa ' . $home->name . ' fallito');
+            ->with('failure', 'La modifica di ' . $home->name . ' fallito');
         }
         $home->services()->sync($data['services']);
 
         return redirect()->route('upr.homes.show', $home->id)
-        ->with('success', 'Salvataggio della casa ' . $home->name . ' riuscito');
+        ->with('success', 'Salvataggio di ' . $home->name . ' riuscito');
 
     }
 
@@ -223,7 +223,7 @@ class HomeController extends Controller
 
         if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
-            ->with('failure', 'Non sei autorizzato ad eliminare questa casa');
+            ->with('failure', 'Non sei autorizzato ad eliminare questo elemento');
         }
 
         $home->services()->detach();
@@ -236,7 +236,7 @@ class HomeController extends Controller
         }
 
         return redirect()->route('upr.homes.index')
-        ->with('success', 'Cancellazione della casa ' . $home->name . ' riuscita');
+        ->with('success', 'Cancellazione di ' . $home->name . ' riuscita');
 
 
 
