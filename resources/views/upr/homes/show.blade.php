@@ -53,7 +53,6 @@
         <div class="row">
             <div class="col-12">
               <div class="form-group">
-                  <label for="address">Address</label>
                   <div id="map-example-container" class="altezza"></div>
                   <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
               </div>

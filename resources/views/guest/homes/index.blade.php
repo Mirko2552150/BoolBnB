@@ -89,7 +89,7 @@
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>
-              <form class="center bg" action="{{route('upr.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
+              <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">

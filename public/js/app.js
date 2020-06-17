@@ -37313,9 +37313,9 @@ if ($('#map-example-container').length > 0) {
     var _long = $('#long-valore').val(); // console.log(long);
 
 
-    var tessera = L.marker([_long, lat]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
+    var tessera = L.marker([lat, _long]).addTo(map); // VAR CH INDICA IL MARKER NELLA MAPS
 
-    map.setView(new L.LatLng(_long, lat), 16); // PUNTO INIZIALE MAPS CON ZOOM
+    map.setView(new L.LatLng(lat, _long), 10); // PUNTO INIZIALE MAPS CON ZOOM
   } else {
     map.setView(new L.LatLng(0, 0), 1); // PUNTO default iniziale
   }
