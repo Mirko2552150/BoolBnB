@@ -12,12 +12,14 @@ class StatController extends Controller
 {
     public function getAll()
     {
-        $stats = Stat::all();
+        $stats = Stat::all()->groupBy('home_id');
+
+            // select * from `stats` group by `home_id`
 
         return response()->json([
             'result' => 'success',
             'data' => $stats,
-            'count' => $stats->count()
+            // 'count' => $stats->count()->groupBy($stats)
         ]);
     }
 }

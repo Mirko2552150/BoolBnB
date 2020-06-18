@@ -58,12 +58,24 @@
               </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <canvas id="statsGrafico"></canvas>
+            </div>
+            <div class="col-6">
+                <h2>VISUALIZZAZIONI TOTALI APPARTAMENTO</h2>
+                <span id="visualAppart"></span>
+            </div>
+        </div>
         {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
         <div class="box invisible">
-            <input type="number" class="form-control" id="lat-valore" name="lat" placeholder="name@example.com" value="{{$home->lat}}">
+            <input type="number" class="form-control" id="lat-valore" name="lat" value="{{$home->lat}}">
         </div>
         <div class="box invisible">
-            <input type="number" class="form-control" id="long-valore" name="long" placeholder="name@example.com" value="{{$home->long}}">
+            <input type="number" class="form-control" id="long-valore" name="long" value="{{$home->long}}">
+        </div>
+        <div class="box invisible">
+            <input type="number" class="form-control" id="homeid" name="home_id" value="{{$home->id}}">
         </div>
         {{-- FINE : passiamo i dati di lat e long alla mappa tramite due input--}}
     </div>
