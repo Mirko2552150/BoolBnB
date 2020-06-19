@@ -47,13 +47,18 @@
         <div class="row">
           <div class="col-12 a">
             <style>
+<<<<<<< Updated upstream
               .a
                 {
                 cursor:pointer;
                 border: 2px solid white;
                 border-radius: 3px;
+=======
+              .a  {
+>>>>>>> Stashed changes
                 margin: 5px;
                 overflow: hidden;
+                border: 2px solid white;
                 background-color: ##f5f5f5;
               }
               .a:hover  {
