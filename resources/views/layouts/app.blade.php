@@ -102,9 +102,9 @@
         <main class="py-4">
             @yield('content')
         </main>
-        @yield('script')
     </div>
-
+    {{-- segnaposto riempibile nelle varie view --}} 
+    @yield('script')
     {{-- algolia --}}
    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>

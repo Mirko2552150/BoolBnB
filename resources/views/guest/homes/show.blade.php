@@ -90,3 +90,7 @@
       {{-- FINE : passiamo i dati di lat e long alla mappa tramite due input--}}
     </div>
 @endsection
+{{-- riempio la section con lo script del file JS che mi serve (il file JS è nella cartella public->js->...) --}}
+@section('script')
+    <script src="{{ asset('js/prova.js') }}" defer></script>
+@endsection

@@ -29,12 +29,17 @@
         var variabileCasa = $('#homeid').val();
 
         var data = response['data'];
+        // console.log(data);
         var dato = data.data;
+        var prova2 = dato[variabileCasa];
+        if (prova2 === undefined) {
+            console.log('nullo');
+        }
         var prova = costruttoreDatiMesi(dato[variabileCasa]);
         visualTotali = prova.reduce(myFunc)
         console.log(visualTotali);
         $('#visualAppart').text(visualTotali);
-
+        // METTERE GRAFICO IN FUNZIONE E RIUSARLO NELL'IF A RIGA 35 E QUI SOTTO
 
 
         var ctx = $('#statsGrafico');

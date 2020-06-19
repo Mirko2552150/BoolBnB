@@ -27,6 +27,14 @@ class GuestController extends Controller
         return view('guest.homes.index', compact('homes'));
     }
 
+    // public function ricerca(Request $request) // qui prendiamo i dati del form algolia (lat-long)
+    // {
+    //      // funzione che calcola raggio di inclusione case tramite long e lat
+    //     $homes = Home::all();
+    //     Filtriamo tutte le case con i parametri necessari di lat e long
+    //     return view('guest.homes.search', compact('homesFiltrate'));
+    // }
+
     /**
      * Display the specified resource.
      *
