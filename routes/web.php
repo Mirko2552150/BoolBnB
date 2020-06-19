@@ -44,4 +44,5 @@ Route::namespace('Guest')
     Route::get('homes/{home}', 'GuestController@show')->name('homes.show');
     Route::post('messages', 'MessageController@store')->name('messages.store');
     Route::post('stats/{home_id}', 'StatController@store')->name('stats.store');
+    Route::post('homes/search', 'GuestController@search')->name('homes.search');
 });

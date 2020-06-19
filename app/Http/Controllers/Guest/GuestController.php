@@ -27,13 +27,41 @@ class GuestController extends Controller
         return view('guest.homes.index', compact('homes'));
     }
 
-    // public function ricerca(Request $request) // qui prendiamo i dati del form algolia (lat-long)
-    // {
-    //      // funzione che calcola raggio di inclusione case tramite long e lat
-    //     $homes = Home::all();
-    //     Filtriamo tutte le case con i parametri necessari di lat e long
-    //     return view('guest.homes.search', compact('homesFiltrate'));
-    // }
+    public function search(Request $request) // qui prendiamo i dati del form algolia (lat-long)
+    {
+        // dd($request->all());
+        $homes = Home::all();
+        $data = $request->all();
+        $dataLat = $data['lat'];
+        $dataLon = $data['long'];
+
+         // funzione che calcola raggio di inclusione case tramite long e lat
+        function distanza($latApp, $lonApp, $latForm, $lonForm, $unit)
+        {
+            $theta = $lonApp - $lonForm;
+            $dist = rad2deg(acos(sin(deg2rad($latApp)) * sin(deg2rad($latForm)) + cos(deg2rad($latApp)) * cos(deg2rad($latForm)) * cos(deg2rad($theta))));
+            // $dist = acos($dist);
+            // $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
+            if ($unit == "K") {
+                return ($miles * 1.609344);
+            // } else if ($unit == "N") {
+            //     return ($miles * 0.8684);
+            // } else {
+            //     return $miles;
+            }
+        };
+        foreach ($homes as $key => $home) {
+            $homeLat = $home->lat;
+            $homeLon = $home->long;
+            $distanzaHome = distanza($homeLat, $homeLon, $dataLat, $dataLon, 'K');
+            dd($distanzaHome);
+        }
+        // Filtriamo tutte le case con i parametri necessari di lat e long
+        return view('.homes.search', compact('homesFiltrate'));
+    }
+
 
     /**
      * Display the specified resource.
