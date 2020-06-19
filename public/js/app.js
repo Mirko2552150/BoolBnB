@@ -58441,30 +58441,33 @@ axios.get('/api/stats', {
   var data = response['data']; // console.log(data);
 
   var dato = data.data;
-  var prova2 = dato[variabileCasa];
+  var home = dato[variabileCasa];
 
-  if (prova2 === undefined) {
-    console.log('nullo');
+  if (home === undefined) {
+    console.log('nullo'); // var null = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    myGraph(mesiAnno, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   }
 
-  var prova = costruttoreDatiMesi(dato[variabileCasa]);
-  visualTotali = prova.reduce(myFunc);
-  console.log(visualTotali);
+  var datiMese = costruttoreDatiMesi(dato[variabileCasa]);
+  console.log(datiMese);
+  visualTotali = datiMese.reduce(myFunc); // console.log(visualTotali);
+
   $('#visualAppart').text(visualTotali); // METTERE GRAFICO IN FUNZIONE E RIUSARLO NELL'IF A RIGA 35 E QUI SOTTO
 
-  var ctx = $('#statsGrafico');
-  var chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: mesiAnno,
-      datasets: [{
-        label: 'Visite per mese',
-        backgroundColor: 'lightgreen',
-        borderColor: 'Green',
-        data: prova
-      }]
-    }
-  });
+  myGraph(mesiAnno, datiMese); // var ctx = $('#statsGrafico');
+  //         var chart = new Chart(ctx, {
+  //             type: 'line',
+  //             data: {
+  //                 labels: mesiAnno,
+  //                 datasets: [{
+  //                     label: 'Visite per mese',
+  //                     backgroundColor: 'lightgreen',
+  //                     borderColor: 'Green',
+  //                     data: datiMese
+  //                 }]
+  //             },
+  //         });
 })["catch"](function (error) {
   // handle error
   console.log(error);
@@ -58499,6 +58502,22 @@ function costruttoreDatiMesi(array) {
 
 function myFunc(total, num) {
   return total + num;
+}
+
+function myGraph(mesi, views) {
+  var ctx = $('#statsGrafico');
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: mesi,
+      datasets: [{
+        label: 'Visite per mese',
+        backgroundColor: 'lightgreen',
+        borderColor: 'Green',
+        data: views
+      }]
+    }
+  });
 }
 
 /***/ }),
@@ -58581,13 +58600,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< Updated upstream
-__webpack_require__(/*! /Applications/MAMP/htdocs/Boolean/Esercizi/42/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Boolean/Esercizi/42/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Esercitazioni\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> Stashed changes
 
 
 /***/ })

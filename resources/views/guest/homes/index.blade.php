@@ -5,7 +5,7 @@
         <div class="col-12">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item">Appartamenti</li>
+              <li class="breadcrumb-item">Appartamento</li>
             </ol>
           </nav>
         </div>
@@ -21,25 +21,33 @@
         <div class="row">
             <div class="col-12">
                 <form class="" action="{{route('guest.homes.search')}}" method="post">
-                    @csrf
-                    @method('POST')
-                    <div class="form-group">
-                        <label for="address">Inserisci indirizzo</label>
+                  @csrf
+                  @method('POST')
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="address">Dove vuoi andare?</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-11">
+                      <div class="form-group">
                         <div id="map-example-container" class="invisible"></div>
                         <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
                         {{-- <input type="range" class="custom-range" id="customRange1"> --}}
+                      </div>
                     </div>
-                    <div class="form-group invisible">
-                        <label for="long">long</label>
-                        <input id="long" type="text" name="long" class="form-control"/>
+                    <div class="col-1">
+                      <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
                     </div>
-                    <div class="form-group invisible">
-                        <label for="lat">lat</label>
-                        <input id="lat" type="text" name="lat" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
-                    </div>
+                  </div>
+                  <div class="form-group invisible">
+                      <label for="long">long</label>
+                      <input id="long" type="text" name="long" class="form-control"/>
+                  </div>
+                  <div class="form-group invisible">
+                      <label for="lat">lat</label>
+                      <input id="lat" type="text" name="lat" class="form-control"/>
+                  </div>
                 </form>
             </div>
         </div>
@@ -47,15 +55,11 @@
         <div class="row">
           <div class="col-12 a">
             <style>
-<<<<<<< Updated upstream
               .a
                 {
                 cursor:pointer;
                 border: 2px solid white;
                 border-radius: 3px;
-=======
-              .a  {
->>>>>>> Stashed changes
                 margin: 5px;
                 overflow: hidden;
                 border: 2px solid white;

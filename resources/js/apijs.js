@@ -12,7 +12,6 @@
 //         console.log(errors);
 //     }
 
-
     axios.get('/api/stats',
     {
         'headers' : {
@@ -31,30 +30,33 @@
         var data = response['data'];
         // console.log(data);
         var dato = data.data;
-        var prova2 = dato[variabileCasa];
-        if (prova2 === undefined) {
+        var home = dato[variabileCasa];
+        if (home === undefined) {
             console.log('nullo');
+            // var null = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            myGraph(mesiAnno, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
         }
-        var prova = costruttoreDatiMesi(dato[variabileCasa]);
-        visualTotali = prova.reduce(myFunc)
-        console.log(visualTotali);
+        var datiMese = costruttoreDatiMesi(dato[variabileCasa]);
+        console.log(datiMese);
+        visualTotali = datiMese.reduce(myFunc)
+        // console.log(visualTotali);
         $('#visualAppart').text(visualTotali);
         // METTERE GRAFICO IN FUNZIONE E RIUSARLO NELL'IF A RIGA 35 E QUI SOTTO
 
-
-        var ctx = $('#statsGrafico');
-                var chart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: mesiAnno,
-                        datasets: [{
-                            label: 'Visite per mese',
-                            backgroundColor: 'lightgreen',
-                            borderColor: 'Green',
-                            data: prova
-                        }]
-                    },
-                });
+        myGraph(mesiAnno, datiMese);
+        // var ctx = $('#statsGrafico');
+        //         var chart = new Chart(ctx, {
+        //             type: 'line',
+        //             data: {
+        //                 labels: mesiAnno,
+        //                 datasets: [{
+        //                     label: 'Visite per mese',
+        //                     backgroundColor: 'lightgreen',
+        //                     borderColor: 'Green',
+        //                     data: datiMese
+        //                 }]
+        //             },
+        //         });
 
     })
     .catch(function (error) {
@@ -87,4 +89,20 @@
 
     function myFunc(total, num) {
       return total + num;
+    }
+
+    function myGraph(mesi, views) {
+      var ctx = $('#statsGrafico');
+              var chart = new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                      labels: mesi,
+                      datasets: [{
+                          label: 'Visite per mese',
+                          backgroundColor: 'lightgreen',
+                          borderColor: 'Green',
+                          data: views
+                      }]
+                  },
+              });
     }
