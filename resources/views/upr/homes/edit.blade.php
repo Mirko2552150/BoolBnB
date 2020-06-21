@@ -104,12 +104,13 @@
                     </div>
                     <div class="form-group invisible">
                         <label for="long">long</label>
-                        <input id="long-valore" type="text" name="long" class="form-control" value="{{old('long') ?? $home->long}}"/>
+                        <input id="long" type="text" name="long" class="form-control" value="{{old('long') ?? $home->long}}"/>
                     </div>
                     <div class="form-group invisible">
                         <label for="lat">lat</label>
-                        <input id="lat-valore" type="text" name="lat" class="form-control" value="{{old('lat') ?? $home->lat}}"/>
+                        <input id="lat" type="text" name="lat" class="form-control" value="{{old('lat') ?? $home->lat}}"/>
                     </div>
+                    <input type="text">
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Salva">
                     </div>
