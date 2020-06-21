@@ -51,55 +51,56 @@
                 </form>
             </div>
         </div>
+        <style>
+          .a
+            {
+            cursor:pointer;
+            border: 2px solid white;
+            border-radius: 3px;
+            margin: 5px;
+            overflow: hidden;
+            border: 2px solid white;
+            background-color: ##f5f5f5;
+          }
+          .a:hover  {
+            transform: scale(1.1);
+            transition-duration: 1s;
+            transition-timing-function: ease-in-out;
+          }
+          *  {
+            background-color: white;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .left, .right {
+            width: 50%;
+            height: 250px;
+            float: left;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #f5f5f5;
+          }
+          .bg {
+            background-color: #f5f5f5;
+          }
+          .center {
+            text-align: center;
+          }
+          .jumbotron , .jumbotron > p, .jumbotron > h1 {
+            background-color: black;
+            color: #f5f5f5;
+          }
+        </style>
       @foreach ($homes as $key => $home)
         <div class="row">
           <div class="col-12 a">
-            <style>
-              .a
-                {
-                cursor:pointer;
-                border: 2px solid white;
-                border-radius: 3px;
-                margin: 5px;
-                overflow: hidden;
-                border: 2px solid white;
-                background-color: ##f5f5f5;
-              }
-              .a:hover  {
-                transform: scale(1.1);
-                transition-duration: 1s;
-              }
-              *  {
-                background-color: white;
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-              }
-              img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-              .left, .right {
-                width: 50%;
-                height: 250px;
-                float: left;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                background-color: #f5f5f5;
-              }
-              .bg {
-                background-color: #f5f5f5;
-              }
-              .center {
-                text-align: center;
-              }
-              .jumbotron , .jumbotron > p, .jumbotron > h1 {
-                background-color: black;
-                color: #f5f5f5;
-              }
-            </style>
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>

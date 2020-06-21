@@ -36,6 +36,13 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+          <style>
+            .navbar {
+              position: fixed;
+              width: 100vw;
+              z-index: 999;
+            }
+          </style>
             <div class="container">
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -57,13 +64,51 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <style>
+                          .nav__link:hover::after {
+                              -webkit-transform: scaleX(1);
+                              transform: scaleX(1);
+                            }
+
+                          .nav__link--btn {
+                            border: 1.5px solid currentColor;
+                            border-radius: 2em;
+                            margin-left: 1em;
+                            transition: background 250ms ease-in-out;
+                            letter-spacing: 1px;
+                            padding: 0.75em 1.5em;
+                          }
+
+                          .nav__link--btn:hover {
+                            background: blue;
+                            color: white;
+                            border-color: blue;
+                            text-decoration: none;
+                          }
+
+                          .nav__link--btn::after {
+                            display: none;
+                          }
+
+                          .nav__link--btn--highlight {
+                            background: limegreen;
+                            border-color: limegreen;
+                            color: #333;
+                          }
+
+                          .nav__link--btn--highlight:hover {
+                            background: blue;
+                            border-color: blue;
+                            text-decoration: none;
+                          }
+                        </style>
                         @guest
                             <li class="nav-item">
-                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                              <a class="nav__link nav__link--btn" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav__link nav__link--btn nav__link--btn--highlight" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -103,7 +148,7 @@
             @yield('content')
         </main>
     </div>
-    {{-- segnaposto riempibile nelle varie view --}} 
+    {{-- segnaposto riempibile nelle varie view --}}
     @yield('script')
     {{-- algolia --}}
    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>

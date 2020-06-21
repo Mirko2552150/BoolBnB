@@ -58406,6 +58406,17 @@ if ($('#map-example-container').length > 0) {
 
 /***/ }),
 
+/***/ "./resources/js/animation.js":
+/*!***********************************!*\
+  !*** ./resources/js/animation.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./resources/js/apijs.js":
 /*!*******************************!*\
   !*** ./resources/js/apijs.js ***!
@@ -58534,6 +58545,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./algolia */ "./resources/js/algolia.js");
 
 __webpack_require__(/*! ./apijs */ "./resources/js/apijs.js");
+
+__webpack_require__(/*! ./animation */ "./resources/js/animation.js");
 
 /***/ }),
 

@@ -28,43 +28,38 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-12">
-              <h2>{{$home->name}}</h2>
-            </div>
+          <div class="col-6">
+            <h2 class="text-center">{{$home->name}}</h2>
+            <h5 class="text-center">{{$home->address}}</h5>
+          </div>
+          <div class="col-6">
+            @foreach ($home->services as $service)
+              <h2 class="text-center">Servizi</h2>
+              <h4 class="text-center"> {{$service->name}}</h4>
+              @if (!$loop->last)
+                  ,
+              @endif
+            @endforeach
+          </div>
         </div>
         <div class="row">
-            <div class="col-8">
-              {{$home->address}}
+          <div class="col-12">
+            <div class="form-group">
+                <div id="map-example-container" class="altezza"></div>
+                <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
             </div>
+          </div>
+        </div>
+        <div class="row">
             <div class="col-4">
-              <img class="img-fluid" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-              @foreach ($home->services as $service)
-                  {{$service->name}}
-                  @if (!$loop->last)
-                      ,
-                  @endif
-              @endforeach
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-              <div class="form-group">
-                  <div id="map-example-container" class="altezza"></div>
-                  <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
-              </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
                 <canvas id="statsGrafico"></canvas>
             </div>
-            <div class="col-6">
-                <h2>VISUALIZZAZIONI TOTALI APPARTAMENTO</h2>
-                <span id="visualAppart"></span>
+            <div class="col-4">
+                <h2 class="text-center">VISUALIZZAZIONI TOTALI APPARTAMENTO</h2>
+                <h1 class="text-center" id="visualAppart"></h1>
+            </div>
+            <div class="col-4">
+                <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
             </div>
         </div>
         {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
@@ -78,5 +73,17 @@
             <input type="number" class="form-control" id="homeid" name="home_id" value="{{$home->id}}">
         </div>
         {{-- FINE : passiamo i dati di lat e long alla mappa tramite due input--}}
+        <div class="row">
+          {{-- <div class="col-12">
+            <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
+          </div> --}}
+          <style>
+            .img {
+              width: 100%;
+              
+              /* padding-bottom: 20px; */
+            }
+          </style>
+        </div>
     </div>
 @endsection
