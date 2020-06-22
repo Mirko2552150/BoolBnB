@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "bootstrap-slider": "^11.0.2",
         "moment": "^2.26.0"
     }
 }

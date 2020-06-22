@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        nav {
+            padding-top: 80px; 
+        }
+    </style>
   {{-- @dd($home) --}}
     <div class="container">
         <div class="row">
@@ -33,12 +38,12 @@
             <h5 class="text-center">{{$home->address}}</h5>
           </div>
           <div class="col-6">
-            @foreach ($home->services as $service)
               <h2 class="text-center">Servizi</h2>
+            @foreach ($home->services as $service)
               <h4 class="text-center"> {{$service->name}}</h4>
-              @if (!$loop->last)
+              {{-- @if (!$loop->last)
                   ,
-              @endif
+              @endif --}}
             @endforeach
           </div>
         </div>
@@ -80,7 +85,7 @@
           <style>
             .img {
               width: 100%;
-              
+
               /* padding-bottom: 20px; */
             }
           </style>

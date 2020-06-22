@@ -110,7 +110,6 @@
                         <label for="lat">lat</label>
                         <input id="lat" type="text" name="lat" class="form-control" value="{{old('lat') ?? $home->lat}}"/>
                     </div>
-                    <input type="text">
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Salva">
                     </div>

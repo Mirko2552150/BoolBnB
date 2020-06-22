@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 use App\Home;
 use App\User;
@@ -23,7 +24,13 @@ class GuestController extends Controller
 
     public function index()
     {
-        $homes = Home::all();
+        // $homes = Home::all()
+        // ->sortBy('created_at', 'asc')
+        // ->get();
+        $homes = Home::whereDate('created_at', '<', Carbon::now()) // prendiamo tutte le case
+        ->orderBy('created_at', 'desc') // ordiniamo rispetto alla data di creazione
+        ->get();
+        // dd($homes);
         return view('guest.homes.index', compact('homes'));
     }
 
@@ -40,8 +47,6 @@ class GuestController extends Controller
         {
             $theta = $lonApp - $lonForm;
             $dist = rad2deg(acos(sin(deg2rad($latApp)) * sin(deg2rad($latForm)) + cos(deg2rad($latApp)) * cos(deg2rad($latForm)) * cos(deg2rad($theta))));
-            // $dist = acos($dist);
-            // $dist = rad2deg($dist);
             $miles = $dist * 60 * 1.1515;
             $unit = strtoupper($unit);
             if ($unit == "K") {
@@ -52,14 +57,34 @@ class GuestController extends Controller
             //     return $miles;
             }
         };
+
+        $inputRange = 20000; // esempio input selezionato da UTENTE GUEST: da inserire barra per utente
+        $homesFiltrate = [];
         foreach ($homes as $key => $home) {
             $homeLat = $home->lat;
             $homeLon = $home->long;
             $distanzaHome = distanza($homeLat, $homeLon, $dataLat, $dataLon, 'K');
-            dd($distanzaHome);
+            $home['distanza'] = $distanzaHome;
+            if ($home['distanza'] <= $inputRange) {
+                $homesFiltrate[] = $home;
+            }
         }
-        // Filtriamo tutte le case con i parametri necessari di lat e long
-        return view('.homes.search', compact('homesFiltrate'));
+
+        // funzione per ordinare l'array $homesFiltrate per distanza
+        function array_sort_by_column(&$array, $column, $direction = SORT_ASC) {
+            $reference_array = array();
+            foreach($array as $key => $row) {
+                $reference_array[$key] = $row[$column];
+            }
+            array_multisort($reference_array, $direction, $array);
+        }
+        array_sort_by_column($homesFiltrate, 'distanza');
+
+
+        // dd($homesFiltrate);
+
+
+        return view('guest.homes.search', compact('homesFiltrate'));
     }
 
 
@@ -82,4 +107,5 @@ class GuestController extends Controller
 
         return view('guest.homes.show', compact('home'));
     }
+
 }

@@ -30,16 +30,33 @@
                   </div>
                   <div class="row">
                     <div class="col-11">
-                      <div class="form-group">
-                        <div id="map-example-container" class="invisible"></div>
-                        <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
-                        {{-- <input id="slider-range" data-slider-id='ex1Slider' type="text" data-slider-min="5" data-slider-max="100" data-slider-step="5" data-slider-value="14"/> --}}
-                    </div>
+                        <div class="form-group">
+                            <div id="map-example-container" class="invisible"></div>
+                            <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+                        </div>
                     </div>
                     <div class="col-1">
                       <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
                     </div>
                   </div>
+                  <div class="form-group">
+                      <div class="row">
+                            <div class="col-4">
+                                <label for="slider-range">Raggio di ricerca</label>
+                                <div class="d-flex justify-content-center my-4">
+                                    <form class="range-field w-75">
+                                      <input id="slider-range" class="border-0" name="range" type="range" min="5" max="200" />
+                                    </form>
+                                    <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+                  <style>
+                      #slider-range {
+                          width: 100%;
+                      }
+                  </style>
                   <div class="form-group invisible">
                       <label for="long">long</label>
                       <input id="long" type="text" name="long" class="form-control"/>
@@ -98,7 +115,16 @@
             color: #f5f5f5;
           }
         </style>
-      @foreach ($homes as $key => $home)
+        <h4 for="services">Services</h4>
+        <div class="form-group">
+            {{-- @foreach ($services as $service)
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" name="services[]" id="service{{$service['id']}}" value="{{$service['id']}}" {{(is_array(old('services')) && in_array($service->id, old('services'))) ? 'checked' : ''}}>
+                    <label class="form-check-label" for="service{{$service['id']}}">{{$service['name']}}</label>
+                </div>
+            @endforeach --}}
+        </div>
+      @foreach ($homesFiltrate as $key => $home)
         <div class="row">
           <div class="col-12 a">
             <div class="left">
@@ -117,4 +143,7 @@
         </div>
       @endforeach
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('js/slider.js') }}" defer></script>
 @endsection
