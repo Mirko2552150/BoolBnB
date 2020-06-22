@@ -1,11 +1,16 @@
 // funzione per Slider su HTML
-$(document).ready(function() {
 
-  const $valueSpan = $('.valueSpan');
-  const $value = $('#slider-range');
-  $valueSpan.html($value.val());
-  $value.on('input change', () => {
+slider('#slider-range', '.valueRange');
+slider('#slider-rooms', '.valueRooms');
+slider('#slider-beds', '.valueBeds');
+slider('#slider-bath', '.valueBath');
 
+
+function slider(input, span) {
+    const $valueSpan = $(span);
+    const $value = $(input);
     $valueSpan.html($value.val());
-  });
-});
+    $value.on('input change', () => {
+        $valueSpan.html($value.val());
+    });
+}

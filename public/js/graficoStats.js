@@ -31,7 +31,7 @@ axios.get('/api/stats',
 .catch(function (error) {
     // handle error
     console.log(error);
-})
+});
 
 function costruttoreDatiMesi(array) {
     var objIntermedio = {};

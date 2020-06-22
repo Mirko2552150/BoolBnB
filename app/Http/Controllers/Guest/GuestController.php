@@ -38,7 +38,9 @@ class GuestController extends Controller
     {
         // dd($request->all());
         $homes = Home::all();
+        $services = Service::all();
         $data = $request->all();
+        $inputRange = $data['range']; // prendiamo l'input del raggio inserito dall'utente
         $dataLat = $data['lat'];
         $dataLon = $data['long'];
 
@@ -58,7 +60,7 @@ class GuestController extends Controller
             }
         };
 
-        $inputRange = 20000; // esempio input selezionato da UTENTE GUEST: da inserire barra per utente
+        // $inputRange = 20000; // esempio input selezionato da UTENTE GUEST: da inserire barra per utente
         $homesFiltrate = [];
         foreach ($homes as $key => $home) {
             $homeLat = $home->lat;
@@ -84,7 +86,7 @@ class GuestController extends Controller
         // dd($homesFiltrate);
 
 
-        return view('guest.homes.search', compact('homesFiltrate'));
+        return view('guest.homes.search', compact('homesFiltrate', 'services'));
     }
 
 

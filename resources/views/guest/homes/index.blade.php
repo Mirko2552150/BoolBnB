@@ -24,22 +24,32 @@
                   @csrf
                   @method('POST')
                   <div class="row">
-                    <div class="col-12">
-                      <label for="address">Dove vuoi andare?</label>
-                    </div>
+                        <div class="col-8">
+                          <label for="address">Dove vuoi andare?</label>
+                        </div>
+                        <div class="col-4">
+                            <label for="slider-range">Raggio di ricerca</label>
+                        </div>
                   </div>
                   <div class="row">
-                    <div class="col-11">
-                      <div class="form-group">
-                        <div id="map-example-container" class="invisible"></div>
-                        <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
-                        {{-- <input id="slider-range" data-slider-id='ex1Slider' type="text" data-slider-min="5" data-slider-max="100" data-slider-step="5" data-slider-value="14"/> --}}
-                    </div>
-                    </div>
-                    <div class="col-1">
-                      <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
-                    </div>
-                  </div>
+                        <div class="col-7">
+                            <div class="form-group">
+                                <div id="map-example-container" class="invisible"></div>
+                                <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="d-flex justify-content-center my-2">
+                                    <form class="range-field w-75">
+                                      <input id="slider-range" class="border-0" name="range" type="range" min="5" max="200" value="20"/>
+                                    </form>
+                                    <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
                   <div class="form-group invisible">
                       <label for="long">long</label>
                       <input id="long" type="text" name="long" class="form-control"/>
@@ -47,6 +57,10 @@
                   <div class="form-group invisible">
                       <label for="lat">lat</label>
                       <input id="lat" type="text" name="lat" class="form-control"/>
+                  </div>
+                  <div class="col-1">
+                    <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
+                  </div>
                   </div>
                 </form>
             </div>
@@ -117,4 +131,7 @@
         </div>
       @endforeach
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('js/slider.js') }}" defer></script>
 @endsection
