@@ -29,32 +29,30 @@
                   @csrf
                   @method('POST')
                   <div class="row">
-                        <div class="col-8">
-                          <label for="address">Dove vuoi andare?</label>
-                        </div>
-                        <div class="col-4">
-                            <label for="slider-range">Raggio di ricerca</label>
-                        </div>
+                    <div class="col-8">
+                      <label for="address">Dove vuoi andare?</label>
+                    </div>
+                    <div class="col-4">
+                        <label for="slider-range">Raggio di ricerca</label>
+                    </div>
                   </div>
                   <div class="row">
-                        <div class="col-7">
-                            <div class="form-group">
-                                <div id="map-example-container" class="invisible"></div>
-                                <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+                    <div class="col-7">
+                        <div class="form-group">
+                            <div id="map-example-container" class="invisible"></div>
+                            <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <div class="d-flex justify-content-center my-2">
+                                <form class="range-field w-75">
+                                  <input id="slider-range" class="border-0 width" name="range" type="range" min="5" max="200" />
+                                </form>
+                                <span class="font-weight-bold text-primary ml-2 mt-1 valueRange"></span>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <div class="d-flex justify-content-center my-2">
-                                    <form class="range-field w-75">
-                                      <input id="slider-range" class="border-0" name="range" type="range" min="5" max="200" />
-                                    </form>
-                                    <span class="font-weight-bold text-primary ml-2 mt-1 valueRange"></span>
-                                </div>
-                            </div>
-                        </div>
-
-
+                    </div>
                   <div class="form-group invisible">
                       <label for="long">long</label>
                       <input id="long" type="text" name="long" class="form-control"/>
@@ -68,14 +66,6 @@
                   </div>
                   </div>
                 </form>
-                <style media="screen">
-                    #slider-range,
-                    #slider-rooms,
-                    #slider-beds,
-                    #slider-bath {
-                        width: 100%;
-                    }
-                </style>
             </div>
         </div>
         <style>
@@ -88,6 +78,7 @@
             overflow: hidden;
             border: 2px solid white;
             background-color: ##f5f5f5;
+            margin-top: 50px;
           }
           .a:hover  {
             transform: scale(1.1);
@@ -124,43 +115,68 @@
             background-color: black;
             color: #f5f5f5;
           }
+          #slider-rooms {
+            width: 80%;
+          }
+          #slider-beds {
+            width: 100%;
+          }
+          #slider-bath {
+            width: 100%;
+          }
+
         </style>
         <form class="form-filtri">
-            <h5 for="services">Services</h5>
-            <div class="form-group services-form-group">
-                @foreach ($services as $service)
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" class="form-check-input" name="services[]" id="service{{$service['id']}}" value="{{$service['id']}}" > {{-- {{(is_array(old('services')) && in_array($service->id, old('services'))) ? 'checked' : ''}} --}}
-                        <label class="form-check-label" for="service{{$service['id']}}">{{$service['name']}}</label>
+            <div class="row">
+              <div class="col-12">
+                <h5 for="services">Services</h5>
+                <div class="form-group services-form-group">
+                    @foreach ($services as $service)
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="services[]" id="service{{$service['id']}}" value="{{$service['id']}}" > {{-- {{(is_array(old('services')) && in_array($service->id, old('services'))) ? 'checked' : ''}} --}}
+                            <label class="form-check-label" for="service{{$service['id']}}">{{$service['name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group">
+                    <label for="n_rooms">Numero Minimo Stanze</label>
+                    <div class="d-flex justify-content-left my-2">
+                        <form class="range-field w-75">
+                          <input id="slider-rooms" class="border-0" name="n_min_rooms" type="range" min="1" max="20" />
+                        </form>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 valueRooms"></span>
                     </div>
-                @endforeach
-            </div>
-            <div class="form-group">
-                <label for="n_rooms">Numero Minimo Stanze</label>
-                <div class="d-flex justify-content-center my-2">
-                    <form class="range-field w-75">
-                      <input id="slider-rooms" class="border-0" name="n_min_rooms" type="range" min="1" max="20" />
-                    </form>
-                    <span class="font-weight-bold text-primary ml-2 mt-1 valueRooms"></span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="n_rooms">Numero Minimo Letti</label>
-                <div class="d-flex justify-content-center my-2">
-                    <form class="range-field w-75">
-                      <input id="slider-beds" class="border-0" name="n_min_beds" type="range" min="1" max="40" />
-                    </form>
-                    <span class="font-weight-bold text-primary ml-2 mt-1 valueBeds"></span>
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                    <label for="n_beds">Numero Minimo Letti</label>
+                    <div class="d-flex justify-content-left my-2">
+                        <form class="range-field w-75">
+                          <input id="slider-beds" class="border-0" name="n_min_beds" type="range" min="1" max="40" />
+                        </form>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 valueBeds"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="n_rooms">Numero Minimo Bagni</label>
-                <div class="d-flex justify-content-center my-2">
-                    <form class="range-field w-75">
-                      <input id="slider-bath" class="border-0" name="n_min_bath" type="range" min="1" max="20" />
-                    </form>
-                    <span class="font-weight-bold text-primary ml-2 mt-1 valueBath"></span>
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                    <label for="n_bath">Numero Minimo Bagni</label>
+                    <div class="d-flex justify-content-left my-2">
+                        <form class="range-field w-75">
+                          <input id="slider-bath" class="border-0" name="n_min_bath" type="range" min="1" max="20" />
+                        </form>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 valueBath"></span>
+                    </div>
                 </div>
+              </div>
+
             </div>
             <input id="invia-filtri" type="text" class="btn btn-primary" value="filtra">
         </form>
