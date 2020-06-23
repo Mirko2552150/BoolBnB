@@ -11,12 +11,15 @@ class SearchController extends Controller
 {
     public function getFilter(Request $request)
     {
-        $homes = Home::all();
         $data = $request->all();
+        $homes = Home::all();
         $inputRange = $data['range']; // prendiamo l'input del raggio inserito dall'utente
         $dataLat = $data['lat'];
         $dataLon = $data['long'];
-        dd($data);
+        // dd($data);
+        // $inputRange = $data['range']; // prendiamo l'input del raggio inserito dall'utente
+        // $dataLat = $data['lat'];
+        // $dataLon = $data['long'];
 
         function distanza($latApp, $lonApp, $latForm, $lonForm, $unit)
         {
@@ -44,6 +47,7 @@ class SearchController extends Controller
                 $homesFiltrate[] = $home;
             }
         }
+
         return response()->json([
             'result' => 'success',
             'data' => $homesFiltrate

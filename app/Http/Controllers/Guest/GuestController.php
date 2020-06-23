@@ -86,9 +86,8 @@ class GuestController extends Controller
         // dd($homesFiltrate);
 
 
-        return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon);
+        return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon)->with('dataRange', $inputRange);
     }
-
 
     /**
      * Display the specified resource.

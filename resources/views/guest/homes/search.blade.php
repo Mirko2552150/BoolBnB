@@ -73,6 +73,18 @@
                   </div>
                   </div>
                 </form>
+                <div class="form-group">
+                    <label for="long">long</label>
+                    <input id="long-invisible" type="text" name="long" class="form-control" value="{{$dataLon}}"/>
+                </div>
+                <div class="form-group">
+                    <label for="lat">lat</label>
+                    <input id="lat-invisible" type="text" name="lat" class="form-control" value="{{$dataLat}}"/>
+                </div>
+                <div class="form-group">
+                    <label for="range">range</label>
+                    <input id="range-invisible" type="text" name="range" class="form-control" value="{{$dataRange}}"/>
+                </div>
             </div>
         </div>
         <style>
@@ -189,10 +201,13 @@
         </form>
       @foreach ($homesFiltrate as $key => $home)
         <div class="row">
-          <div class="col-12 a">
+          <div class="col-12 a" id="{{$home->id}}">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>
+                @foreach ($home->services as $service)
+                    <p class="services" data-services="{{$service->id}}">{{$service->name}}</p>
+                @endforeach
               <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
