@@ -1,23 +1,23 @@
 
 
-axios.get('/api/stats',
+axios.get('/api/search',
 {
     'headers' : {
-        // 'Authorization' : 'Bearer Pippo?123',
-        // 'Content-Type':'application/json'
+        'Authorization' : 'Bearer Pippo?123',
+        'Content-Type':'application/json'
     },
 })
 .then(function (response) {
     var data = response['data'];
-    console.log(data);
+    console.log(response);
 
-    $('#invia-filtri').on('click', function () {
-        var arrayInput = $('.services-form-group input');
-        var servizi = serviziChecked(arrayInput);
-        var rooms = $('#slider-rooms').val();
-        var beds = $('#slider-beds').val();
-        var bath = $('#slider-bath').val();
-    });
+    // $('#invia-filtri').on('click', function () {
+    //     var arrayInput = $('.services-form-group input');
+    //     var servizi = serviziChecked(arrayInput);
+    //     var rooms = $('#slider-rooms').val();
+    //     var beds = $('#slider-beds').val();
+    //     var bath = $('#slider-bath').val();
+    // });
 })
 .catch(function (error) {
     // handle error

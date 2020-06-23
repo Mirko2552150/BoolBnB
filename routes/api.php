@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::middleware('api.auth')->get('/tags', 'Api\TagController@getAll');
 
 Route::middleware('api.auth')->get('/stats', 'Api\StatController@getAll');
+Route::middleware('api.auth')->get('/search', 'Api\SearchController@getFilter');

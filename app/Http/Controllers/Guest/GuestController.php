@@ -86,7 +86,7 @@ class GuestController extends Controller
         // dd($homesFiltrate);
 
 
-        return view('guest.homes.search', compact('homesFiltrate', 'services'));
+        return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon);
     }
 
 

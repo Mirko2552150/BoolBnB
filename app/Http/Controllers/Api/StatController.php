@@ -21,5 +21,6 @@ class StatController extends Controller
             'data' => $stats,
             // 'count' => $stats->count()->groupBy($stats)
         ]);
+
     }
 }

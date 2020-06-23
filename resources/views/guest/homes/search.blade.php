@@ -1,3 +1,10 @@
+@php
+    // header('Content-Type: application/json');
+    // // echo json_encode($homesFiltrate);
+
+@endphp
+
+{{-- @dd($homesFiltrate); --}}
 @extends('layouts.app')
 @section('content')
     <style>
