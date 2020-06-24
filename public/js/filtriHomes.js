@@ -3,7 +3,7 @@
     var beds = $('#slider-beds').val();
     var rooms = $('#slider-rooms').val();
     var bathrooms = $('#slider-bath').val();
-    // var amenitiesfilter = amenityFilter();
+    var serviceFilter = serviziFiltro();
     $.ajax({
       url: "http://127.0.0.1:8000/api/search",
       method: "GET",
@@ -15,18 +15,30 @@
       success: function success(data) {
         var risultati = data;
         var servicesActive = [];
-        console.log(risultati);
-        console.log(risultati.data.length);
 
         for (var i = 0; i < risultati.data.length; i++) {
             var risultato = risultati.data[i];
-            // $('#' + risultato.id).show();
+            $('#' + risultato.id).show();
 
 
             if (risultato.n_beds < beds || risultato.n_rooms < rooms || risultato.n_bath < bathrooms) {
                 $('#' + risultato.id).hide();
             } else {
-                $('#' + risultato.id).show();
+                $('#' + risultato.id).find('.services').each(function () {
+                var service = parseInt($(this).data('services'));
+                servicesActive.push(service);
+                });
+
+                for (var x = 0; x < serviceFilter.length; x++) {
+                    var check = servicesActive.includes(serviceFilter[x]);
+
+                    if (check === false ) {
+                        $('#' + risultato.id).hide();
+                        break;
+                    } else {
+                        $('#' + risultato.id).show();
+                    }
+                }
             }
 
             // if (risultato.n_rooms < rooms) {
@@ -37,31 +49,28 @@
             // $('#' + risultato.id).hide();
             // }
 
-            $('#' + risultato.id).find('.services').each(function () {
-            var service = parseInt($(this).data('services'));
-            servicesActive.push(service);
-            });
-            console.log('i servizi sono: ' + servicesActive);
 
-            for (var x = 0; x < servicesActive.length; x++) {
-                console.log('service filter corrisponde: ' + servicesActive[x]);
-                console.log('service home corrisponde: ' + servicesActive);
-                var check = servicesActive.includes(servicesActive[x]);
-                console.log(check);
-
-                if (check === false) {
-                    $('#' + risultato.id).hide();
-                }
-            }
         }
 
+
     },
+
       error: function error() {
         alert("E' avvenuto un errore. ");
       }
     });
+
 });
 
+function serviziFiltro() { // Funzione che crea un array filters inserendo i valori delle checkbox che sono stati cliccati dall'utente
+    var filters = [];
+    $('.filtri-servizi').each(function(){
+        if ($(this).prop('checked')) {
+           filters.push(parseInt($(this).val()));
+        }
+    });
+    return filters;
+};
 
 
 

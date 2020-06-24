@@ -43,6 +43,7 @@ class GuestController extends Controller
         $inputRange = $data['range']; // prendiamo l'input del raggio inserito dall'utente
         $dataLat = $data['lat'];
         $dataLon = $data['long'];
+        $indirizzo = $data['address'];
 
          // funzione che calcola raggio di inclusione case tramite long e lat
         function distanza($latApp, $lonApp, $latForm, $lonForm, $unit)
@@ -86,7 +87,7 @@ class GuestController extends Controller
         // dd($homesFiltrate);
 
 
-        return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon)->with('dataRange', $inputRange);
+        return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon)->with('dataRange', $inputRange)->with('indirizzo', $indirizzo);
     }
 
     /**

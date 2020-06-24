@@ -44,15 +44,16 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="form-group">
-                                <div class="d-flex justify-content-center my-2">
-                                    <form class="range-field w-75">
-                                      <input id="slider-range" class="border-0" name="range" type="range" min="5" max="200" value="20"/>
-                                    </form>
-                                    <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
-                                </div>
+                        <div class="form-group">
+                            <div class="d-flex justify-content-center my-2">
+                                <form class="range-field w-75">
+                                  <input id="slider-range" class="border-0 width" name="range" type="range" min="5" max="200" value="20" />
+                                </form>
+                                <span class="font-weight-bold text-primary ml-2 mt-1 valueRange"></span>
+                                <span class="font-weight-bold text-primary ml-2 mt-1">Km</span>
                             </div>
                         </div>
+                    </div>
 
 
                   <div class="form-group invisible">

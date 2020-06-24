@@ -15,11 +15,12 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">Appartamento</li>
-            </ol>
-          </nav>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('guest.homes.index')}}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Ricerca</li>
+                </ol>
+            </nav>
         </div>
       </div>
         <div class="jumbotron">
@@ -32,56 +33,16 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="{{route('guest.homes.search')}}" method="post">
-                  @csrf
-                  @method('POST')
-                  <div class="row">
-                    <div class="col-8">
-                      <label for="address">Dove vuoi andare?</label>
-                    </div>
-                    <div class="col-4">
-                        <label for="slider-range">Raggio di ricerca</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-7">
-                        <div class="form-group">
-                            <div id="map-example-container" class="invisible"></div>
-                            <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-group">
-                            <div class="d-flex justify-content-center my-2">
-                                <form class="range-field w-75">
-                                  <input id="slider-range" class="border-0 width" name="range" type="range" min="5" max="200" />
-                                </form>
-                                <span class="font-weight-bold text-primary ml-2 mt-1 valueRange"></span>
-                            </div>
-                        </div>
-                    </div>
-                  <div class="form-group invisible">
-                      <label for="long">long</label>
-                      <input id="long" type="text" name="long" class="form-control"/>
-                  </div>
-                  <div class="form-group invisible">
-                      <label for="lat">lat</label>
-                      <input id="lat" type="text" name="lat" class="form-control"/>
-                  </div>
-                  <div class="col-1">
-                    <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
-                  </div>
-                  </div>
-                </form>
-                <div class="form-group">
+                <h1>{!!$indirizzo!!}</h1>
+                <div class="form-group invisible">
                     <label for="long">long</label>
                     <input id="long-invisible" type="text" name="long" class="form-control" value="{{$dataLon}}"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group invisible">
                     <label for="lat">lat</label>
                     <input id="lat-invisible" type="text" name="lat" class="form-control" value="{{$dataLat}}"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group invisible">
                     <label for="range">range</label>
                     <input id="range-invisible" type="text" name="range" class="form-control" value="{{$dataRange}}"/>
                 </div>
@@ -152,7 +113,7 @@
                 <div class="form-group services-form-group">
                     @foreach ($services as $service)
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="services[]" id="service{{$service['id']}}" value="{{$service['id']}}" > {{-- {{(is_array(old('services')) && in_array($service->id, old('services'))) ? 'checked' : ''}} --}}
+                            <input type="checkbox" class="form-check-input filtri-servizi" name="services[]" id="service{{$service['id']}}" value="{{$service['id']}}" > {{-- {{(is_array(old('services')) && in_array($service->id, old('services'))) ? 'checked' : ''}} --}}
                             <label class="form-check-label" for="service{{$service['id']}}">{{$service['name']}}</label>
                         </div>
                     @endforeach
@@ -165,7 +126,7 @@
                     <label for="n_rooms">Numero Minimo Stanze</label>
                     <div class="d-flex justify-content-left my-2">
                         <form class="range-field w-75">
-                          <input id="slider-rooms" class="border-0" name="n_min_rooms" type="range" min="1" max="20" />
+                          <input id="slider-rooms" class="border-0" name="n_min_rooms" type="range" min="1" max="20" value="1"/>
                         </form>
                         <span class="font-weight-bold text-primary ml-2 mt-1 valueRooms"></span>
                     </div>
@@ -177,7 +138,7 @@
                     <label for="n_beds">Numero Minimo Letti</label>
                     <div class="d-flex justify-content-left my-2">
                         <form class="range-field w-75">
-                          <input id="slider-beds" class="border-0" name="n_min_beds" type="range" min="1" max="40" />
+                          <input id="slider-beds" class="border-0" name="n_min_beds" type="range" min="1" max="40" value="1"/>
                         </form>
                         <span class="font-weight-bold text-primary ml-2 mt-1 valueBeds"></span>
                     </div>
@@ -189,7 +150,7 @@
                     <label for="n_bath">Numero Minimo Bagni</label>
                     <div class="d-flex justify-content-left my-2">
                         <form class="range-field w-75">
-                          <input id="slider-bath" class="border-0" name="n_min_bath" type="range" min="1" max="20" />
+                          <input id="slider-bath" class="border-0" name="n_min_bath" type="range" min="1" max="20" value="1"/>
                         </form>
                         <span class="font-weight-bold text-primary ml-2 mt-1 valueBath"></span>
                     </div>
@@ -206,7 +167,7 @@
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>
                 @foreach ($home->services as $service)
-                    <p class="services" data-services="{{$service->id}}">{{$service->name}}</p>
+                    <p class="services invisible" data-services="{{$service->id}}">{{$service->name}}</p>
                 @endforeach
               <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
