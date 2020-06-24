@@ -1,0 +1,28 @@
+nav {
+    padding-top: 80px;
+}
+
+.altezza {
+    height: 300px;
+}
+
+.invisible {
+    display: none;
+}
+
+*  {
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#slider-rooms {
+  width: 80%;
+}
+#slider-beds {
+  width: 100%;
+}
+#slider-bath {
+  width: 100%;
+}

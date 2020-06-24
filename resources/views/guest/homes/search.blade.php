@@ -7,12 +7,7 @@
 {{-- @dd($homesFiltrate); --}}
 @extends('layouts.app')
 @section('content')
-    <style>
-        nav {
-            padding-top: 80px;
-        }
-    </style>
-    <div class="container">
+    <div class="container guest-homes-search">
       <div class="row">
         <div class="col-12">
             <nav aria-label="breadcrumb">
@@ -48,64 +43,6 @@
                 </div>
             </div>
         </div>
-        <style>
-          .a
-            {
-            cursor:pointer;
-            border: 2px solid white;
-            border-radius: 3px;
-            margin: 5px;
-            overflow: hidden;
-            border: 2px solid white;
-            background-color: ##f5f5f5;
-            margin-top: 50px;
-          }
-          .a:hover  {
-            transform: scale(1.1);
-            transition-duration: 1s;
-            transition-timing-function: ease-in-out;
-          }
-          *  {
-            background-color: white;
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-          }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-          .left, .right {
-            width: 50%;
-            height: 250px;
-            float: left;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            background-color: #f5f5f5;
-          }
-          .bg {
-            background-color: #f5f5f5;
-          }
-          .center {
-            text-align: center;
-          }
-          .jumbotron , .jumbotron > p, .jumbotron > h1 {
-            background-color: black;
-            color: #f5f5f5;
-          }
-          #slider-rooms {
-            width: 80%;
-          }
-          #slider-beds {
-            width: 100%;
-          }
-          #slider-bath {
-            width: 100%;
-          }
-
-        </style>
         <form class="form-filtri">
             <div class="row">
               <div class="col-12">
@@ -162,7 +99,7 @@
         </form>
       @foreach ($homesFiltrate as $key => $home)
         <div class="row">
-          <div class="col-12 a" id="{{$home->id}}">
+          <div class="col-12 box-app" id="{{$home->id}}">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>

@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        nav {
-            padding-top: 80px;
-        }
-    </style>
   <div class="container">
     <div class="row">
       <div class="col-12">

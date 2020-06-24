@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        nav {
-            padding-top: 80px;
-        }
-    </style>
-    <div class="container">
+    <div class="container guest-homes-index">
       <div class="row">
         <div class="col-12">
           <nav aria-label="breadcrumb">
@@ -54,8 +49,6 @@
                             </div>
                         </div>
                     </div>
-
-
                   <div class="form-group invisible">
                       <label for="long">long</label>
                       <input id="long" type="text" name="long" class="form-control"/>
@@ -71,56 +64,9 @@
                 </form>
             </div>
         </div>
-        <style>
-          .a
-            {
-            cursor:pointer;
-            border: 2px solid white;
-            border-radius: 3px;
-            margin: 5px;
-            overflow: hidden;
-            border: 2px solid white;
-            background-color: ##f5f5f5;
-          }
-          .a:hover  {
-            transform: scale(1.1);
-            transition-duration: 1s;
-            transition-timing-function: ease-in-out;
-          }
-          *  {
-            background-color: white;
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-          }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-          .left, .right {
-            width: 50%;
-            height: 250px;
-            float: left;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            background-color: #f5f5f5;
-          }
-          .bg {
-            background-color: #f5f5f5;
-          }
-          .center {
-            text-align: center;
-          }
-          .jumbotron , .jumbotron > p, .jumbotron > h1 {
-            background-color: black;
-            color: #f5f5f5;
-          }
-        </style>
       @foreach ($homes as $key => $home)
         <div class="row">
-          <div class="col-12 a">
+          <div class="col-12 box-app">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>

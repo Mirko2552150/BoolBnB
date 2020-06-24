@@ -1,16 +1,17 @@
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// file comuni
+@import 'partials/_common';
 
-.altezza {
-    height: 300px;
-}
+// upr show
+@import 'partials/_show';
 
-.invisible {
-    display: none;
-}
+// guest index
+@import 'partials/_guestindex';

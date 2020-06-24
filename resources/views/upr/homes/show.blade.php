@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        nav {
-            padding-top: 80px; 
-        }
-    </style>
   {{-- @dd($home) --}}
     <div class="container">
         <div class="row">
@@ -34,17 +29,21 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <h2 class="text-center">{{$home->name}}</h2>
-            <h5 class="text-center">{{$home->address}}</h5>
+            <div class="cubo-center">
+              <h2 class="text-center">{{$home->name}}</h2>
+              <h5 class="text-center">{{$home->address}}</h5>
+            </div>
           </div>
           <div class="col-6">
+            <div class="cubo-center">
               <h2 class="text-center">Servizi</h2>
-            @foreach ($home->services as $service)
+              @foreach ($home->services as $service)
               <h4 class="text-center"> {{$service->name}}</h4>
               {{-- @if (!$loop->last)
                   ,
               @endif --}}
-            @endforeach
+              @endforeach
+            </div>
           </div>
         </div>
         <div class="row">
@@ -57,14 +56,21 @@
         </div>
         <div class="row">
             <div class="col-4">
+              <div class="cubo">
                 <canvas id="statsGrafico"></canvas>
+              </div>
+
             </div>
             <div class="col-4">
+              <div class="cubo-center">
                 <h2 class="text-center">VISUALIZZAZIONI TOTALI APPARTAMENTO</h2>
                 <h1 class="text-center" id="visualAppart"></h1>
+              </div>
             </div>
             <div class="col-4">
+              <div class="cubo">
                 <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
+              </div>
             </div>
         </div>
         {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
@@ -82,13 +88,6 @@
           {{-- <div class="col-12">
             <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
           </div> --}}
-          <style>
-            .img {
-              width: 100%;
-
-              /* padding-bottom: 20px; */
-            }
-          </style>
         </div>
     </div>
 @endsection
