@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class SponsorType extends Model
 {
   protected $fillable = [
-    'sponsor_id',
     'name',
     'price',
     'duration'
   ];
 
-  public function sponsors() {
+  public function sponsor(){
     return $this->hasMany('App\Sponsor');
   }
+
 }

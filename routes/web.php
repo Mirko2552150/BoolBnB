@@ -34,6 +34,7 @@ Route::namespace('Upr')
 ->group(function (){
     Route::resource('homes', 'HomeController');
     Route::get('sponsors/{id}', 'SponsorController@create')->name('sponsors.create');
+    Route::post('sponsors/{id}', 'SponsorController@store')->name('sponsors.store');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
 });

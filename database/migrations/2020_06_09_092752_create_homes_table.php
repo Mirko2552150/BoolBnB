@@ -23,6 +23,7 @@ class CreateHomesTable extends Migration
             $table->integer('mq');
             $table->text('long');
             $table->text('lat');
+            // $table->text('description')->nullable();
             $table->string('address');
             $table->string('path')->default('https://picsum.photos/200/300');
             $table->timestamps();

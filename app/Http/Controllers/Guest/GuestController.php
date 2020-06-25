@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use App\Home;
@@ -24,14 +25,19 @@ class GuestController extends Controller
 
     public function index()
     {
-        // $homes = Home::all()
+        $adesso = Carbon::now();
         // ->sortBy('created_at', 'asc')
         // ->get();
-        $homes = Home::whereDate('created_at', '<', Carbon::now()) // prendiamo tutte le case
+        $homes = Home::where('created_at', '<', $adesso) // prendiamo tutte le case
         ->orderBy('created_at', 'desc') // ordiniamo rispetto alla data di creazione
         ->get();
         // dd($homes);
-        return view('guest.homes.index', compact('homes'));
+        $sponsorizzati = DB::table('homes') // prendo la tabella homes
+            ->rightJoin('sponsors', 'homes.id', '=', 'sponsors.home_id') //collego i  valori della tabella sponsors
+            ->where('expired', '>', $adesso)
+            ->get();
+        // dd($sponsorizzati);
+        return view('guest.homes.index', compact('homes', 'sponsorizzati'));
     }
 
     public function search(Request $request) // qui prendiamo i dati del form algolia (lat-long)

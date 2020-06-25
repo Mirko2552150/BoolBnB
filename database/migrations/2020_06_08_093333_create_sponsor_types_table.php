@@ -15,7 +15,6 @@ class CreateSponsorTypesTable extends Migration
     {
         Schema::create('sponsor_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sponsor_id')->constrained();
             $table->string('name', 50);
             $table->float('price', 4,2);
             $table->unsignedTinyInteger('duration');

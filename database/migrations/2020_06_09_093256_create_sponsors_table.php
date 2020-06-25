@@ -16,6 +16,7 @@ class CreateSponsorsTable extends Migration
         Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('home_id')->constrained();
+            $table->foreignId('sponsor_type_id')->constrained();
             $table->date('expired')->nullable();
             $table->timestamps();
         });

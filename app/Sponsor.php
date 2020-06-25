@@ -8,7 +8,8 @@ class Sponsor extends Model
 {
   protected $fillable = [
     'home_id',
-    'expired'
+    'expired',
+    'sponsor_type_id'
   ];
 
   public function home(){

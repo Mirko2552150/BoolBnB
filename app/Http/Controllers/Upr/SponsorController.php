@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Upr;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -47,9 +48,12 @@ class SponsorController extends Controller
         ]);
 
         $token = $gateway->ClientToken()->generate();
+        $sponsorsType = SponsorType::all();
 
         return view('upr.homes.sponsor', [
-            'token' => $token
+            'token' => $token,
+            'home_id' => $id,
+            'sponsors_type' => $sponsorsType
         ]);
     }
 
@@ -59,9 +63,49 @@ class SponsorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $userId = Auth::id();
+        $now = Carbon::now();
+
+        $data['home_id'] = $id;
+        if ($data['amount'] == "2.99") {
+            $data['sponsor_type_id'] = 1;
+            $now->addHours(24);
+            $data['expired'] = $now;
+        } elseif ($data['amount'] == "5.99") {
+            $data['sponsor_type_id'] = 2;
+            $now->addHours(72);
+            $data['expired'] = $now;
+        } elseif ($data['amount'] == "9.99") {
+            $data['sponsor_type_id'] = 3;
+            $now->addHours(144);
+            $data['expired'] = $now;
+        } else {
+            return redirect()->back()
+            ->with('failure', 'Pagamento fallito amount');
+        }
+
+
+        $home = Home::findOrFail($id);
+
+        if ($userId!=$home->user_id) {
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'Non sei autorizzato a vedere questa sezione');
+        }
+
+        $sponsor = new Sponsor;
+        $sponsor->fill($data);
+        $saved = $sponsor->save();
+
+        if (!$saved) {
+            return redirect()->back()
+            ->with('failure', 'Pagamento fallito');
+        }
+
+        return redirect()->route('upr.homes.index')
+        ->with('success', 'Pagamento riuscito');
     }
 
     /**

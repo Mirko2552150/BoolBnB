@@ -68,6 +68,34 @@
 
             </div>
         </div>
+        @if ($sponsorizzati)
+            @foreach ($sponsorizzati as $key => $sponsorizzato)
+                <div class="row border">
+                    <style media="screen">
+                        .border{ border: 5px solid red;}
+                    </style>
+                    <div class="col-12 box-app">
+                        <div class="left">
+                            <h5 class="center bg">{!!$sponsorizzato->name!!}</h5>
+                            <p class="center bg">Descrizione appartamento</p>
+
+                            {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                            <form class="center bg" action="{{route('guest.stats.store', $sponsorizzato->id)}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                            </form>
+
+
+                        </div>
+                        <div class="right">
+                            <img class="" src="{{asset('storage/' . $sponsorizzato->path)}}" alt="{{$sponsorizzato->name}}">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        @endif
       @foreach ($homes as $key => $home)
         <div class="row">
           <div class="col-12 box-app">
