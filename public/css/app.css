@@ -10962,7 +10962,8 @@ nav ol li {
   background-color: #e9ecef;
 }
 
-.cubo {
+.cubo,
+.cubo-bis {
   background-color: #e9ecef;
   border-radius: 5px;
   padding: 2px;
@@ -10994,7 +10995,7 @@ nav ol li {
   /* padding-bottom: 20px; */
 }
 
-.cubo img {
+.cubo-bis img {
   height: 400px;
   padding-top: 20px;
   padding-bottom: 20px;

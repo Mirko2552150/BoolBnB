@@ -45,10 +45,10 @@
           </div>
         </div>
       </div>
-      
+
       <div class="row ">
         <div class="col-12 ">
-          <div class="cubo no-bg">
+          <div class="cubo-bis no-bg">
             <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
           </div>
         </div>
