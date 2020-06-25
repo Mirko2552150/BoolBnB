@@ -27,26 +27,30 @@
           </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          <h2>{{$home->name}}</h2>
+        <div class="col-6">
+          <div class="cubo-center">
+            <h2 class="text-center">{{$home->name}}</h2>
+            <h5 class="text-center">{{$home->address}}</h5>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="cubo-center">
+            <h2 class="text-center">Servizi</h2>
+            @foreach ($home->services as $service)
+            <h4 class="text-center"> {{$service->name}}</h4>
+            {{-- @if (!$loop->last)
+                ,
+            @endif --}}
+            @endforeach
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-8">
-          {{$home->address}}
-        </div>
-        <div class="col-4">
-          <img class="img-fluid" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          @foreach ($home->services as $service)
-              {{$service->name}}
-              @if (!$loop->last)
-                  ,
-              @endif
-          @endforeach
+      
+      <div class="row ">
+        <div class="col-12 ">
+          <div class="cubo no-bg">
+            <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
+          </div>
         </div>
       </div>
       <div class="row">
@@ -82,7 +86,7 @@
           </div>
       </form>
 
-      
+
       {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
       <div class="box invisible">
           <input type="number" class="form-control" id="lat-valore" name="lat" placeholder="name@example.com" value="{{$home->lat}}">

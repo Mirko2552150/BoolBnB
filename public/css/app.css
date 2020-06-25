@@ -10994,6 +10994,17 @@ nav ol li {
   /* padding-bottom: 20px; */
 }
 
+.cubo img {
+  height: 400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+.no-bg {
+  background-color: white;
+}
+
 .guest-homes-index .box-app,
 .guest-homes-search .box-app {
   cursor: pointer;

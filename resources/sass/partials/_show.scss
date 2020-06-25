@@ -27,6 +27,15 @@
 
 .img {
   width: 100%;
-
   /* padding-bottom: 20px; */
+}
+
+.cubo img {
+  height: 400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+.no-bg {
+  background-color: white;
 }
