@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; // inserire eventualmente (relativo Store IMG)
+use Braintree\Gateway;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::namespace('Upr')
 ->middleware('auth')
 ->group(function (){
     Route::resource('homes', 'HomeController');
+    Route::get('sponsors/{id}', 'SponsorController@create')->name('sponsors.create');
+    Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
 });
 
@@ -46,3 +49,56 @@ Route::namespace('Guest')
     Route::post('stats/{home_id}', 'StatController@store')->name('stats.store');
     Route::post('homes/search', 'GuestController@search')->name('homes.search');
 });
+
+// Route::get('/', function () {
+//
+//
+// });
+
+// Route::get('upr/homes/sponsor', function () {
+//
+//
+// });
+
+// Route::post('/checkout', function (Request $request) {
+//
+//     $gateway = new Braintree\Gateway([
+//         'environment' => config('services.braintree.environment'),
+//         'merchantId' => config('services.braintree.merchantId'),
+//         'publicKey' => config('services.braintree.publicKey'),
+//         'privateKey' => config('services.braintree.privateKey')
+//     ]);
+//
+//     $amount = $request->amount;
+//     $nonce = $request->payment_method_nonce;
+//
+//     $result = $gateway->transaction()->sale([
+//         'amount' => $amount,
+//         'paymentMethodNonce' => $nonce,
+//         // 'customer' => [
+//         //     'firstName' => 'Luca',
+//         //     'lastName' => 'Giannino',
+//         //     'email' => 'gianni@gmail.com'
+//         // ],
+//         'options' => [
+//             'submitForSettlement' => true
+//         ]
+//     ]);
+//
+//     if ($result->success) {
+//         $transaction = $result->transaction;
+//         // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
+//         return back()->with('success_message', 'Transazione eseguita correttamente.');
+//     } else {
+//         $errorString = "";
+//
+//         foreach ($result->errors->deepAll() as $error) {
+//             $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+//         }
+//
+//         // $_SESSION["errors"] = $errorString;
+//         // header("Location: " . $baseUrl . "index.php");
+//
+//         return back()->withErrors('An error occurred with the message: '. $result->message);
+//     }
+// });

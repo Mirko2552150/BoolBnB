@@ -75,8 +75,6 @@ function serviziFiltro() { // Funzione che crea un array filters inserendo i val
 
 
 
-
-
 // axios.get('/api/search',
 // {
 //     'headers' : {
