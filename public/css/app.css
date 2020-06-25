@@ -10941,7 +10941,6 @@ nav {
 }
 
 * {
-  background-color: white;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -10957,6 +10956,10 @@ nav {
 
 #slider-bath {
   width: 100%;
+}
+
+nav ol li {
+  background-color: #e9ecef;
 }
 
 .cubo {

@@ -47,7 +47,12 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 padding">
+            <style>
+              .padding {
+                padding-top: 20px;
+              }
+            </style>
             <div class="form-group">
                 <div id="map-example-container" class="altezza"></div>
                 <input type="search" id="input-map" value="{{$home->address}}" name="address" class="form-control invisible" placeholder="Indirizzo Appartamento"/>

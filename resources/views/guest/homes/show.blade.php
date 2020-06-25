@@ -53,6 +53,8 @@
         <div class="col-12">
           <div id="map-example-container" class="altezza"></div>
           <input type="search" id="input-map" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
+
+        {{-- FORM INVIO DATI CON GET VERSO MESSAGES --}}
         <form action="{{route('guest.messages.store')}}" method="post">
           @csrf
           @method('POST')
@@ -80,6 +82,7 @@
           </div>
       </form>
 
+      
       {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
       <div class="box invisible">
           <input type="number" class="form-control" id="lat-valore" name="lat" placeholder="name@example.com" value="{{$home->lat}}">

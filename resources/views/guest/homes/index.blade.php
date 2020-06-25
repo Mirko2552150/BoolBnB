@@ -5,7 +5,7 @@
         <div class="col-12">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item">Appartamento</li>
+              <li class="breadcrumb-item">Home</li>
             </ol>
           </nav>
         </div>
@@ -20,6 +20,8 @@
         </div>
         <div class="row">
             <div class="col-12">
+
+                {{-- FORM PER INVIO POST SEARCH --}}
                 <form class="" action="{{route('guest.homes.search')}}" method="post">
                   @csrf
                   @method('POST')
@@ -62,6 +64,8 @@
                   </div>
                   </div>
                 </form>
+
+
             </div>
         </div>
       @foreach ($homes as $key => $home)
@@ -70,11 +74,15 @@
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
               <p class="center bg">Descrizione appartamento</p>
+
+              {{-- FORM PER INVIO CONTEGGIO STATS --}}
               <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
               </form>
+
+
             </div>
             <div class="right">
               <img class="" src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">

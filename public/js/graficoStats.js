@@ -1,7 +1,7 @@
-axios.get('/api/stats',
+axios.get('/api/stats', // chiamata AXIOS
 {
     'headers' : {
-        'Authorization' : 'Bearer Pippo?123',
+        'Authorization' : 'Bearer Pippo?123', // AUTH da inserire nel file ENV
         'Content-Type':'application/json'
     },
 })

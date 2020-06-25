@@ -1,6 +1,6 @@
 // console.log('collegato');
   $('#invia-filtri').on('click', function () {
-    var beds = $('#slider-beds').val();
+    var beds = $('#slider-beds').val(); // prendiamo i VAL dagli SLIDER
     var rooms = $('#slider-rooms').val();
     var bathrooms = $('#slider-bath').val();
     var serviceFilter = serviziFiltro();
@@ -8,11 +8,11 @@
       url: "http://127.0.0.1:8000/api/search",
       method: "GET",
       data: {
-        lat: $('#lat-invisible').val(),
+        lat: $('#lat-invisible').val(), // INVIAMO I DATI LONG LAT E RANGE AL CONTROLLER
         long: $('#long-invisible').val(),
         range: $('#range-invisible').val()
       },
-      success: function success(data) {
+      success: function success(data) { // CI RESTITUISCE I DATA
         var risultati = data;
         var servicesActive = [];
 
@@ -64,9 +64,9 @@
 
 function serviziFiltro() { // Funzione che crea un array filters inserendo i valori delle checkbox che sono stati cliccati dall'utente
     var filters = [];
-    $('.filtri-servizi').each(function(){
+    $('.filtri-servizi').each(function(){ // CICLIAMO SUI DIV
         if ($(this).prop('checked')) {
-           filters.push(parseInt($(this).val()));
+           filters.push(parseInt($(this).val())); // SE SONO CHECK ISERIAMO L'ID NELL'ARRAY
         }
     });
     return filters;
