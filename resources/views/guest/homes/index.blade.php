@@ -77,7 +77,7 @@
                     <div class="col-12 box-app">
                         <div class="left">
                             <h5 class="center bg">{!!$sponsorizzato->name!!}</h5>
-                            <p class="center bg">Descrizione appartamento</p>
+                            <p class="center bg descrizione">{!!$sponsorizzato->description!!}</p>
 
                             {{-- FORM PER INVIO CONTEGGIO STATS --}}
                             <form class="center bg" action="{{route('guest.stats.store', $sponsorizzato->id)}}" method="post" enctype="multipart/form-data">
@@ -101,7 +101,7 @@
           <div class="col-12 box-app">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
-              <p class="center bg">Descrizione appartamento</p>
+              <p class="center bg descrizione">{!!$home->description!!}</p>
 
               {{-- FORM PER INVIO CONTEGGIO STATS --}}
               <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HomesTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
         $this->call(StatsTableSeeder::class);
-        $this->call('HomesTableSeeder');
         // php artisan db:seed --class=StatsTableSeeder per far partire solo il singolo seeder
     }
 }
