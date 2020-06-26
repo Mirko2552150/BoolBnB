@@ -85,6 +85,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3">{!!old('description')!!}</textarea>
+                        {{-- <input type="text" row=3 class="form-control" id="description" name="description" placeholder="Inserisci la descrizione" value="{{old('description')}}"> --}}
+                        @error('description')
+                            <small class="alert alert-danger form-text text-muted">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="services">Photo</label>
                         <div class="custom-file">
                             <input type="file" name="path" class="custom-file-input" id="inputGroupFile01">

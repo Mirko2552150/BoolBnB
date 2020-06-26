@@ -73,6 +73,7 @@ class HomeController extends Controller
             'n_rooms' => 'required|integer|min:1|max:20',
             'n_beds' => 'required|integer|min:1|max:40',
             'path' => 'required|string',
+            'description' => 'required|string',
             'n_bath' => 'required|integer|min:1|max:20',
             'mq' => 'required|integer|min:20|max:10000',
             'services' => 'array',
