@@ -31,7 +31,7 @@ class HomeController extends Controller
         $messages = DB::table('homes')
             ->rightJoin('messages', 'homes.id', '=', 'messages.home_id')
             ->where('user_id', $userId)
-            ->get();
+            ->paginate(10); // sostituisco il GET con paginat
             // dd($messages);
         return view('upr.homes.index', compact('homes', 'messages'));
     }

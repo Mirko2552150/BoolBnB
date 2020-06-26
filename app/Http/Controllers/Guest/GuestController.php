@@ -30,7 +30,8 @@ class GuestController extends Controller
         // ->get();
         $homes = Home::where('created_at', '<', $adesso) // prendiamo tutte le case
         ->orderBy('created_at', 'desc') // ordiniamo rispetto alla data di creazione
-        ->get();
+        ->paginate(15); // sostituisco il GET con paginat
+
         // dd($homes);
         $sponsorizzati = DB::table('homes') // prendo la tabella homes
             ->rightJoin('sponsors', 'homes.id', '=', 'sponsors.home_id') //collego i  valori della tabella sponsors

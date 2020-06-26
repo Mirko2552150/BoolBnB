@@ -65,7 +65,15 @@
                     @endif
                   @endforeach
                 </td>
-                <td><img style="width:100px;" class="card-img-top" alt="Responsive image" src="{{asset('storage/' . $home->path)}}"></td>
+                <td>
+
+                  @if (strpos($home->path, 'https://loremflickr') !== false)
+                      <img class="img-responsive" style="width: 100%;" src="{!!$home->path!!}" alt="{!!$home->path!!}">
+                  @else
+                    <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
+                  @endif
+
+                </td>
                 <td><a class="btn btn-primary" href="{{route('upr.homes.show', $home->id)}}">Visualizza</a></td>
                 @if (Auth::id() == $home['user_id'])
                   <td><a class="btn btn-secondary" href="{{route('upr.homes.edit', $home->id)}}">Modifica</a></td>
@@ -125,6 +133,7 @@
                     @endif
                   </tr>
                 @endforeach
+                {{ $messages->links() }}
             {{-- @endif --}}
           </tbody>
         </table>

@@ -74,7 +74,11 @@
             </div>
             <div class="col-4">
               <div class="cubo">
-                <img class="img" alt="Responsive image" src="{{asset('storage/' . $home->path)}}">
+                @if (strpos($home->path, 'https://loremflickr') !== false)
+                    <img class="img-responsive" style="width: 100%;" src="{!!$home->path!!}" alt="{!!$home->path!!}">
+                @else
+                  <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
+                @endif
               </div>
             </div>
         </div>

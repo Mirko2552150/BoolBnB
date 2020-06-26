@@ -113,11 +113,18 @@
 
             </div>
             <div class="right">
-              <img class="" src="{{asset('storage/' . $home->path)}}" alt="{{$home->name}}">
+
+              @if (strpos($home->path, 'https://loremflickr') !== false)
+                  <img class="" src="{!!$home->path!!}" alt="{!!$home->path!!}">
+              @else
+                <img class="" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
+              @endif
+
             </div>
           </div>
         </div>
       @endforeach
+      {{ $homes->links() }}
     </div>
 @endsection
 @section('script')
