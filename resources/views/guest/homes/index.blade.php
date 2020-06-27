@@ -69,68 +69,69 @@
             </div>
         </div>
 
+        {{ $cases->links() }} {{-- doppio link per navigare (link equivalente a fine div) --}}
         @foreach ($cases as $key => $case)
-            @if ($case->expired!= null && $case->expired > $adesso)
-            <div class="row border">
-                <style media="screen">
-                    .border{ border: 5px solid red;}
-                </style>
-                <div class="col-12 box-app">
-                    <div class="left">
-                        <h5 class="center bg">{!!$case->name!!}</h5>
-                        <p class="center bg descrizione">{!!$case->description!!}</p>
+            @if ($case->expired != null && $case->expired > $adesso)
+                <div class="row border">
+                    <style media="screen">
+                        .border{ border: 5px solid red;}
+                    </style>
+                    <div class="col-12 box-app">
+                        <div class="left">
+                            <h5 class="center bg">{!!$case->name!!}</h5>
+                            <p class="center bg descrizione">{!!$case->description!!}</p>
 
-                        {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                        <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            @method('POST')
-                            <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
-                        </form>
+                            {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                            <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                            </form>
+
+
+                        </div>
+                        <div class="right">
+                            @if (strpos($case->path, 'https://loremflickr') !== false)
+                                <img class="img-responsive" style="width: 100%;" src="{!!$case->path!!}" alt="{!!$case->path!!}">
+                            @else
+                              <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+        @foreach ($cases as $key => $case)
+            @if ($case->expired == null)
+                <div class="row">
+                  <div class="col-12 box-app">
+                    <div class="left">
+                      <h5 class="center bg">{!!$case->name!!}</h5>
+                      <p class="center bg descrizione">{!!$case->description!!}</p>
+
+                      {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                      <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                        <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                      </form>
 
 
                     </div>
                     <div class="right">
-                        @if (strpos($case->path, 'https://loremflickr') !== false)
-                            <img class="img-responsive" style="width: 100%;" src="{!!$case->path!!}" alt="{!!$case->path!!}">
-                        @else
-                          <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
-                        @endif
+
+                      @if (strpos($case->path, 'https://loremflickr') !== false)
+                          <img class="" src="{!!$case->path!!}" alt="{!!$case->path!!}">
+                      @else
+                        <img class="" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
+                      @endif
+
                     </div>
+                  </div>
                 </div>
-            </div>
-        @else
-            <div class="row">
-              <div class="col-12 box-app">
-                <div class="left">
-                  <h5 class="center bg">{!!$case->name!!}</h5>
-                  <p class="center bg descrizione">{!!$case->description!!}</p>
-
-                  {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                  <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @method('POST')
-                    <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
-                  </form>
-
-
-                </div>
-                <div class="right">
-
-                  @if (strpos($case->path, 'https://loremflickr') !== false)
-                      <img class="" src="{!!$case->path!!}" alt="{!!$case->path!!}">
-                  @else
-                    <img class="" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
-                  @endif
-
-                </div>
-              </div>
-            </div>
-        @endif
+            @endif
         @endforeach
-
-
-
-      {{ $homes->links() }}
+        {{ $cases->links() }}
     </div>
 @endsection
 @section('script')

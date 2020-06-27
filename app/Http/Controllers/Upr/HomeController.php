@@ -29,11 +29,14 @@ class HomeController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $homes = Home::all()->where('user_id', $userId);
+        $homes = Home::where('user_id', $userId)
+        ->orderBy('updated_at', 'desc') // ordinamento case in base a data di modifica
+        ->get();
         $messages = DB::table('homes')
             ->rightJoin('messages', 'homes.id', '=', 'messages.home_id')
             ->where('user_id', $userId)
-            ->paginate(10); // sostituisco il GET con paginat
+            ->orderBy('messages.created_at', 'desc') // ordinamento messaggi dal più recente
+            ->paginate(10); // sostituisco il GET con paginate
             // dd($messages);
         return view('upr.homes.index', compact('homes', 'messages'));
     }
