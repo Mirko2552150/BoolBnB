@@ -79,7 +79,11 @@
                   <td><a class="btn btn-secondary" href="{{route('upr.homes.edit', $home->id)}}">Modifica</a></td>
                 @endif
                 @if (Auth::id() == $home['user_id'])
-                  <td><a class="btn btn-info" href="{{route('upr.sponsors.create', $home->id)}}">Sponsorizza</a></td>
+                    @if ($home->sponsors->isEmpty())
+                        <td><a class="btn btn-info" href="{{route('upr.sponsors.create', $home->id)}}">Sponsorizza</a></td>
+                    @else
+                        <td></td>
+                    @endif
                 @endif
                 @if (Auth::id() == $home['user_id'])
                   <td>

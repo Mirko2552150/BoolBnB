@@ -70,6 +70,13 @@ class SponsorController extends Controller
         $now = Carbon::now();
 
         $data['home_id'] = $id;
+        $home = Home::findOrFail($id); //cerco la casa nella tabella
+        if (empty($home->sponsors)) { // controllo se la casa ha già una sponsorizzazione
+            dd($home->sponsors);
+            return redirect()->route('upr.homes.index')
+            ->with('failure', 'E\' già attiva una sponsorizzazione per "' . $home->name . '"');
+        }
+
         if ($data['amount'] == "2.99") {
             $data['sponsor_type_id'] = 1;
             $now->addHours(24);
@@ -86,9 +93,6 @@ class SponsorController extends Controller
             return redirect()->back()
             ->with('failure', 'Pagamento fallito amount');
         }
-
-
-        $home = Home::findOrFail($id);
 
         if ($userId!=$home->user_id) {
             return redirect()->route('upr.homes.index')
