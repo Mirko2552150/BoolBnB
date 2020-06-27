@@ -12,6 +12,7 @@ class Home extends Model
     'n_rooms',
     'n_beds',
     'n_bath',
+    'description',
     'mq',
     'long',
     'lat',
