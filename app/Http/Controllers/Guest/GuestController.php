@@ -33,10 +33,10 @@ class GuestController extends Controller
         ->paginate(15); // sostituisco il GET con paginat
 
         // dd($homes);
-        $sponsorizzati = DB::table('homes') // prendo la tabella homes
-            ->rightJoin('sponsors', 'homes.id', '=', 'sponsors.home_id') //collego i  valori della tabella sponsors
-            ->where('expired', '>', $adesso)
-            ->get();
+        // $sponsorizzati = DB::table('homes') // prendo la tabella homes
+        //     ->rightJoin('sponsors', 'homes.id', '=', 'sponsors.home_id') //collego i  valori della tabella sponsors
+        //     ->where('expired', '>', $adesso)
+        //     ->get();
         // dd($sponsorizzati);
 
         $cases = DB::table('homes')
@@ -51,10 +51,10 @@ class GuestController extends Controller
         if (Auth::check()) {
           $userId = Auth::id();
           $user = User::findOrFail($userId);
-          return view('guest.homes.index', compact('homes', 'sponsorizzati', 'cases', 'adesso', 'user'));
+          return view('guest.homes.index', compact('cases', 'adesso', 'user'));
         }
 
-        return view('guest.homes.index', compact('homes', 'sponsorizzati', 'cases', 'adesso'));
+        return view('guest.homes.index', compact('cases', 'adesso'));
     }
 
     public function search(Request $request) // qui prendiamo i dati del form algolia (lat-long)
@@ -105,7 +105,6 @@ class GuestController extends Controller
             array_multisort($reference_array, $direction, $array);
         }
         array_sort_by_column($homesFiltrate, 'distanza');
-
 
         // dd($homesFiltrate);
         if (Auth::check()) {

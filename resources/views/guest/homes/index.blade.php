@@ -83,17 +83,16 @@
 
                             {{-- FORM PER INVIO CONTEGGIO STATS --}}
                             @if ($user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
-                                <a href="{{route('guest.homes.show', $case->id)}}">
+                                <a class="center" href="{{route('guest.homes.show', $case->id)}}">
                                     <button type="button" class="btn btn-primary">Visualizza appartamento</button>
                                 </a>
-                            @endif
+                            @else
                             <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
                                 <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
                             </form>
-
-
+                            @endif
                         </div>
                         <div class="right">
                             @if (strpos($case->path, 'https://loremflickr') !== false)
