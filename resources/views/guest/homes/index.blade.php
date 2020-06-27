@@ -82,7 +82,7 @@
                             <p class="center bg descrizione">{!!$case->description!!}</p>
 
                             {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                            @if ($user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
+                            @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
                                 <a class="center" href="{{route('guest.homes.show', $case->id)}}">
                                     <button type="button" class="btn btn-primary">Visualizza appartamento</button>
                                 </a>
@@ -114,7 +114,7 @@
                       <p class="center bg descrizione">{!!$case->description!!}</p>
 
                       {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                      @if ($user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
+                      @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
                           <a class="center" href="{{route('guest.homes.show', $case->id)}}">
                               <button type="button" class="btn btn-primary">Visualizza appartamento</button>
                           </a>

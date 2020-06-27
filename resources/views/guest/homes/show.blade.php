@@ -63,7 +63,7 @@
           <input type="search" id="input-map" class="form-control invisible" placeholder="Indirizzo Appartamento"/>
 
         {{-- FORM INVIO DATI CON GET VERSO MESSAGES --}}
-        @if ($user->id !== $home['user_id']) {{-- UPR che ha creato la casa non deve inviarsi un messaggio da solo--}}
+        @if ((isset($user) && $user->id != $home['user_id']) || (!isset($user))) {{-- UPR che ha creato la casa non deve inviarsi un messaggio da solo--}}
             <form action="{{route('guest.messages.store')}}" method="post">
               @csrf
               @method('POST')

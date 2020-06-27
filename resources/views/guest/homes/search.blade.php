@@ -106,7 +106,7 @@
                 @foreach ($home->services as $service)
                     <p class="services invisible" data-services="{{$service->id}}">{{$service->name}}</p>
                 @endforeach
-                @if ($user->id == $home->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
+                @if (isset($user) && $user->id == $home->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
                     <a class="center" href="{{route('guest.homes.show', $home->id)}}">
                         <button type="button" class="btn btn-primary">Visualizza appartamento</button>
                     </a>
