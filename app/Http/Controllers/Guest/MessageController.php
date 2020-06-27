@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Message;
+use App\User;
 
 class MessageController extends Controller
 {

@@ -48,6 +48,11 @@ class GuestController extends Controller
             // ->where('expired', '>', $adesso)
             // ->get();
             // dd($cases);
+        if (Auth::check()) {
+          $userId = Auth::id();
+          $user = User::findOrFail($userId);
+          return view('guest.homes.index', compact('homes', 'sponsorizzati', 'cases', 'adesso', 'user'));
+        }
 
         return view('guest.homes.index', compact('homes', 'sponsorizzati', 'cases', 'adesso'));
     }
@@ -103,7 +108,11 @@ class GuestController extends Controller
 
 
         // dd($homesFiltrate);
-
+        if (Auth::check()) {
+          $userId = Auth::id();
+          $user = User::findOrFail($userId);
+          return view('guest.homes.search', compact('homesFiltrate', 'services', 'user'))->with('dataLat', $dataLat)->with('dataLon', $dataLon)->with('dataRange', $inputRange)->with('indirizzo', $indirizzo);
+        }
 
         return view('guest.homes.search', compact('homesFiltrate', 'services'))->with('dataLat', $dataLat)->with('dataLon', $dataLon)->with('dataRange', $inputRange)->with('indirizzo', $indirizzo);
     }
