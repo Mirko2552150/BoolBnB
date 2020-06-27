@@ -38,7 +38,16 @@ class GuestController extends Controller
             ->where('expired', '>', $adesso)
             ->get();
         // dd($sponsorizzati);
-        return view('guest.homes.index', compact('homes', 'sponsorizzati'));
+
+        $cases = DB::table('homes')
+            ->leftJoin('sponsors', 'homes.id', '=', 'sponsors.home_id')
+            ->select('homes.*', 'sponsors.expired')
+            ->orderBy('expired', 'desc')
+            // ->where('expired', '>', $adesso)
+            ->get();
+            // dd($cases);
+
+        return view('guest.homes.index', compact('homes', 'sponsorizzati', 'cases', 'adesso'));
     }
 
     public function search(Request $request) // qui prendiamo i dati del form algolia (lat-long)

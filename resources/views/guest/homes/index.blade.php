@@ -68,62 +68,68 @@
 
             </div>
         </div>
-        @if ($sponsorizzati)
-            @foreach ($sponsorizzati as $key => $sponsorizzato)
-                <div class="row border">
-                    <style media="screen">
-                        .border{ border: 5px solid red;}
-                    </style>
-                    <div class="col-12 box-app">
-                        <div class="left">
-                            <h5 class="center bg">{!!$sponsorizzato->name!!}</h5>
-                            <p class="center bg descrizione">{!!$sponsorizzato->description!!}</p>
 
-                            {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                            <form class="center bg" action="{{route('guest.stats.store', $sponsorizzato->id)}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @method('POST')
-                                <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
-                            </form>
+        @foreach ($cases as $key => $case)
+            @if ($case->expired!= null && $case->expired > $adesso)
+            <div class="row border">
+                <style media="screen">
+                    .border{ border: 5px solid red;}
+                </style>
+                <div class="col-12 box-app">
+                    <div class="left">
+                        <h5 class="center bg">{!!$case->name!!}</h5>
+                        <p class="center bg descrizione">{!!$case->description!!}</p>
+
+                        {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                        <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                        </form>
 
 
-                        </div>
-                        <div class="right">
-                            <img class="" src="{{asset('storage/' . $sponsorizzato->path)}}" alt="{{$sponsorizzato->name}}">
-                        </div>
+                    </div>
+                    <div class="right">
+                        @if (strpos($case->path, 'https://loremflickr') !== false)
+                            <img class="img-responsive" style="width: 100%;" src="{!!$case->path!!}" alt="{!!$case->path!!}">
+                        @else
+                          <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
+                        @endif
                     </div>
                 </div>
-            @endforeach
+            </div>
+        @else
+            <div class="row">
+              <div class="col-12 box-app">
+                <div class="left">
+                  <h5 class="center bg">{!!$case->name!!}</h5>
+                  <p class="center bg descrizione">{!!$case->description!!}</p>
 
+                  {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                  <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
+                    <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                  </form>
+
+
+                </div>
+                <div class="right">
+
+                  @if (strpos($case->path, 'https://loremflickr') !== false)
+                      <img class="" src="{!!$case->path!!}" alt="{!!$case->path!!}">
+                  @else
+                    <img class="" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
+                  @endif
+
+                </div>
+              </div>
+            </div>
         @endif
-      @foreach ($homes as $key => $home)
-        <div class="row">
-          <div class="col-12 box-app">
-            <div class="left">
-              <h5 class="center bg">{!!$home->name!!}</h5>
-              <p class="center bg descrizione">{!!$home->description!!}</p>
-
-              {{-- FORM PER INVIO CONTEGGIO STATS --}}
-              <form class="center bg" action="{{route('guest.stats.store', $home->id)}}" method="post" enctype="multipart/form-data">
-                @csrf
-                @method('POST')
-                <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
-              </form>
+        @endforeach
 
 
-            </div>
-            <div class="right">
 
-              @if (strpos($home->path, 'https://loremflickr') !== false)
-                  <img class="" src="{!!$home->path!!}" alt="{!!$home->path!!}">
-              @else
-                <img class="" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
-              @endif
-
-            </div>
-          </div>
-        </div>
-      @endforeach
       {{ $homes->links() }}
     </div>
 @endsection

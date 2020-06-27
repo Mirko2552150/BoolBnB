@@ -16,6 +16,8 @@ use App\Message;
 use App\Service;
 use App\InfoUser;
 use App\Stat;
+use App\Sponsor;
+use App\SponsorType;
 
 class HomeController extends Controller
 {
@@ -218,6 +220,12 @@ class HomeController extends Controller
         // dd($messages);
         foreach ($stats as $stat) {
             $stat->delete();
+        }
+
+        $sponsors = Sponsor::all()->where('home_id', $home->id);
+        // dd($sponsors);
+        foreach ($sponsors as $sponsor) {
+            $sponsor->delete();
         }
 
         if ($userId!=$home->user_id) {
