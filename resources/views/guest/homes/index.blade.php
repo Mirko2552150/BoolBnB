@@ -71,15 +71,38 @@
 
         {{ $cases->links() }} {{-- doppio link per navigare (link equivalente a fine div) --}}
         @foreach ($cases as $key => $case)
-            @if ($case->expired != null && $case->expired > $adesso)
-                <div class="row border">
-                    <style media="screen">
-                        .border{ border: 5px solid red;}
-                    </style>
-                    <div class="col-12 box-app">
+            @if ($case->expired != null && $case->expired > $adesso)  {{-- se la casa ha lo sponso ed e' min di ora--}}
+                <div class="row">
+                    <div class="col-12 box-app sponsor">
+                      <span class="rotate">SPONSORIZE</span>
+                      <span class="rotate-dx">SPONSORIZE</span>
+                      <style>
+                          .row {
+                            /* position: relative; */
+                          }
+                          .sponsor {
+                            background-color: red;
+
+                          }
+                          .rotate {
+                            transform: rotate(270deg);
+                            position: absolute;
+                            left: -39px;
+                            top: 40px;
+                            color: white;
+                          }
+                          .rotate-dx {
+                            transform: rotate(90deg);
+                            position: absolute;
+                            right: -39px;
+                            bottom: 40px;
+                            color: white;
+                          }
+                      </style>
                         <div class="left">
                             <h5 class="center bg">{!!$case->name!!}</h5>
-                            <p class="center bg descrizione">{!!$case->description!!}</p>
+                            {{-- <p class="center bg descrizione">{!!$case->description!!}</p> --}}
+                            <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p>
 
                             {{-- FORM PER INVIO CONTEGGIO STATS --}}
                             @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
@@ -106,40 +129,38 @@
             @endif
         @endforeach
         @foreach ($cases as $key => $case)
-            @if ($case->expired == null)
-                <div class="row">
-                  <div class="col-12 box-app">
-                    <div class="left">
-                      <h5 class="center bg">{!!$case->name!!}</h5>
-                      <p class="center bg descrizione">{!!$case->description!!}</p>
-
-                      {{-- FORM PER INVIO CONTEGGIO STATS --}}
-                      @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
-                          <a class="center" href="{{route('guest.homes.show', $case->id)}}">
-                              <button type="button" class="btn btn-primary">Visualizza appartamento</button>
-                          </a>
-                      @else
-                      <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('POST')
-                        <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
-                      </form>
-                      @endif
-
-
-                    </div>
-                    <div class="right">
-
-                      @if (strpos($case->path, 'https://loremflickr') !== false)
-                          <img class="" src="{!!$case->path!!}" alt="{!!$case->path!!}">
-                      @else
-                        <img class="" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
-                      @endif
-
-                    </div>
-                  </div>
+          @if ($case->expired == null)
+            <div class="row">
+              <div class="col-12 box-app">
+                <div class="left">
+                  <h5 class="center bg">{!!$case->name!!}</h5>
+                  {{-- <p class="center bg descrizione">{!!$case->description!!}</p> --}}
+                  <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p>
+                  {{-- FORM PER INVIO CONTEGGIO STATS --}}
+                  @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
+                      <a class="center" href="{{route('guest.homes.show', $case->id)}}">
+                          <button type="button" class="btn btn-primary">Visualizza appartamento</button>
+                      </a>
+                  @else
+                  <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
+                    <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                  </form>
+                  @endif
                 </div>
-            @endif
+                <div class="right">
+
+                  @if (strpos($case->path, 'https://loremflickr') !== false)
+                      <img class="" src="{!!$case->path!!}" alt="{!!$case->path!!}">
+                  @else
+                    <img class="" src="{{asset('storage/' . $case->path)}}" alt="{{$case->path}}">
+                  @endif
+
+                </div>
+              </div>
+            </div>
+          @endif
         @endforeach
         {{ $cases->links() }}
     </div>

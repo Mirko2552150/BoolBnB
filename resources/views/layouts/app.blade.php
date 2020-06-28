@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- bootstrap --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -25,7 +27,7 @@
     {{-- Algolia --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>    
+    <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
 
 </head>
 <body>
@@ -36,6 +38,10 @@
               position: fixed;
               width: 100vw;
               z-index: 999;
+              height: 70px;
+            }
+            .mr-auto img {
+              width: 100px;
             }
           </style>
             <div class="container">
@@ -49,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      <img class="logo" src="https://png2.cleanpng.com/sh/b260419f8db2c75b86cbbd4d0be6fe75/L0KzQYm3VsA5N5NrjZH0aYP2gLBuTfFqepNzep91b3fyPcTojr1nepJze9t8Y3AwhMPolvVtNZl0jNd1LXHsgrP1gr1td5h0RadrMXG1cYPqVsJnbpM7RqcENEW2QYe3UcUzQGU5SaUDOESzRYa1kP5o/kisspng-airbnb-logo-san-francisco-travel-hotel-airbnb-logo-5b1a2a2c62ffb6.5945316015284413884055.png" alt="">
+                      <img class="logo" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F69%2FAirbnb_Logo_B%25C3%25A9lo.svg%2F220px-Airbnb_Logo_B%25C3%25A9lo.svg.png&f=1&nofb=1" alt="">
                     </ul>
                     <style>
                       .logo {
@@ -143,6 +149,8 @@
             @yield('content')
         </main>
     </div>
+    @include('partials.footer')
+
     {{-- segnaposto riempibile nelle varie view --}}
     @yield('script')
     {{-- algolia --}}
