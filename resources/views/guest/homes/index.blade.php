@@ -74,30 +74,9 @@
             @if ($case->expired != null && $case->expired > $adesso)  {{-- se la casa ha lo sponso ed e' min di ora--}}
                 <div class="row">
                     <div class="col-12 box-app sponsor">
-                      <span class="rotate">SPONSORIZE</span>
-                      <span class="rotate-dx">SPONSORIZE</span>
+                      <span class="rotate">SPONSORED</span>
+                      <span class="rotate-dx">SPONSORED</span>
                       <style>
-                          .row {
-                            /* position: relative; */
-                          }
-                          .sponsor {
-                            background-color: red;
-
-                          }
-                          .rotate {
-                            transform: rotate(270deg);
-                            position: absolute;
-                            left: -39px;
-                            top: 40px;
-                            color: white;
-                          }
-                          .rotate-dx {
-                            transform: rotate(90deg);
-                            position: absolute;
-                            right: -39px;
-                            bottom: 40px;
-                            color: white;
-                          }
                       </style>
                         <div class="left">
                             <h5 class="center bg">{!!$case->name!!}</h5>

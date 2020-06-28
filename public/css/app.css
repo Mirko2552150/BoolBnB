@@ -11014,6 +11014,29 @@ nav ol li {
   background-color: white;
 }
 
+.guest-homes-index .sponsor,
+.guest-homes-search .sponsor {
+  background-color: red;
+}
+
+.guest-homes-index .rotate,
+.guest-homes-search .rotate {
+  transform: rotate(270deg);
+  position: absolute;
+  left: -39px;
+  top: 40px;
+  color: white;
+}
+
+.guest-homes-index .rotate-dx,
+.guest-homes-search .rotate-dx {
+  transform: rotate(90deg);
+  position: absolute;
+  right: -39px;
+  bottom: 40px;
+  color: white;
+}
+
 .guest-homes-index .box-app,
 .guest-homes-search .box-app {
   cursor: pointer;

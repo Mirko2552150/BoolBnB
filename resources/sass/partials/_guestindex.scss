@@ -1,5 +1,25 @@
 .guest-homes-index, .guest-homes-search {
 
+    .sponsor {
+      background-color: red;
+    }
+    
+    .rotate {
+      transform: rotate(270deg);
+      position: absolute;
+      left: -39px;
+      top: 40px;
+      color: white;
+    }
+
+    .rotate-dx {
+      transform: rotate(90deg);
+      position: absolute;
+      right: -39px;
+      bottom: 40px;
+      color: white;
+    }
+
   .box-app {
     cursor:pointer;
     border: 2px solid white;
@@ -7,7 +27,7 @@
     margin: 5px;
     overflow: hidden;
     border: 2px solid white;
-    
+
   }
   .box-app:hover  {
     transform: scale(1.1);
