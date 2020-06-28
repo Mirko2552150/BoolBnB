@@ -11072,3 +11072,12 @@ nav ol li {
   color: #f5f5f5;
 }
 
+footer {
+  background-color: #f5f5f5;
+}
+
+footer .fab {
+  color: #ff5a5f;
+  cursor: pointer;
+}
+
