@@ -80,8 +80,8 @@
                       </style>
                         <div class="left">
                             <h5 class="center bg">{!!$case->name!!}</h5>
-                            {{-- <p class="center bg descrizione">{!!$case->description!!}</p> --}}
-                            <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p>
+                            <p class="center bg descrizione">{!!$case->description!!}</p>
+                            {{-- <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p> --}}
 
                             {{-- FORM PER INVIO CONTEGGIO STATS --}}
                             @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
@@ -113,8 +113,8 @@
               <div class="col-12 box-app">
                 <div class="left">
                   <h5 class="center bg">{!!$case->name!!}</h5>
-                  {{-- <p class="center bg descrizione">{!!$case->description!!}</p> --}}
-                  <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p>
+                  <p class="center bg descrizione">{!!$case->description!!}</p>
+                  {{-- <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p> --}}
                   {{-- FORM PER INVIO CONTEGGIO STATS --}}
                   @if (isset($user) && $user->id == $case->user_id) {{-- Se l'utente che clicca è colui che ha creato la casa, la statistica non viene creata--}}
                       <a class="center" href="{{route('guest.homes.show', $case->id)}}">

@@ -102,7 +102,8 @@
           <div class="col-12 box-app" id="{{$home->id}}">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>
-              <p class="center bg">Descrizione appartamento</p>
+              <p class="center bg descrizione">{!!$home->description!!}</p>
+              {{-- <p class="center bg descrizione">Appartamento luminoso, esposto ad est, con relativi servizi</p> --}}
                 @foreach ($home->services as $service)
                     <p class="services invisible" data-services="{{$service->id}}">{{$service->name}}</p>
                 @endforeach
