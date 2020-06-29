@@ -30,8 +30,8 @@ class HomesTableSeeder extends Seeder
         $home->n_bath = $faker->numberBetween($min = 1, $max = 20);
         $home->mq = $faker->numberBetween($min = 20, $max = 10000);
         $home->address = $faker->address();
-        $home->long = $faker->longitude(-180, 180);
-        $home->lat = $faker->latitude(-90, 90);
+        $home->long = $faker->longitude(6.847179, 9.857582);
+        $home->lat = $faker->latitude(43.813343, 45.698093);
         $home->path = 'https://loremflickr.com/1106/400/home?random=' . $i;
         // salvataggio casa
         $home->save();
