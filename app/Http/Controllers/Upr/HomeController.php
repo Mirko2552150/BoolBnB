@@ -66,7 +66,8 @@ class HomeController extends Controller
         $data['user_id'] = Auth::id();
         if (!isset($data['path'])) {
           return redirect()->back()
-          ->with('failure', 'Inserisci una foto');
+          ->with('failure', 'Inserisci una foto')
+          ->withInput();
         }
 
         $path = Storage::disk('public')->put('images', $data['path']);
