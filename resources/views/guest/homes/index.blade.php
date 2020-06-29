@@ -26,21 +26,21 @@
                   @csrf
                   @method('POST')
                   <div class="row">
-                        <div class="col-8">
+                        <div class="col-lg-8">
                           <label for="address">Dove vuoi andare?</label>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4 none">
                             <label for="slider-range">Raggio di ricerca</label>
                         </div>
                   </div>
                   <div class="row">
-                        <div class="col-7">
+                        <div class="col-md-12 col-lg-7">
                             <div class="form-group">
                                 <div id="map-example-container" class="invisible"></div>
                                 <input type="search" id="input-map" name="address" class="form-control" placeholder="Indirizzo Appartamento"/>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-12 col-lg-4">
                         <div class="form-group">
                             <div class="d-flex justify-content-center my-2">
                                 <form class="range-field w-75">
@@ -59,7 +59,7 @@
                       <label for="lat">lat</label>
                       <input id="lat" type="text" name="lat" class="form-control"/>
                   </div>
-                  <div class="col-1">
+                  <div class="col-md-12 col-lg-1">
                     <input id="invia-form" class="btn btn-primary" type="submit" value="Find">
                   </div>
                   </div>
@@ -92,7 +92,7 @@
                             <form class="center bg" action="{{route('guest.stats.store', $case->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
-                                <input id="invia-form" class="btn btn-primary" type="submit" value="Visualizza appartamento">
+                                <input id="invia-form" style="width: 198px;" class="btn btn-primary col-md-9" type="submit" value="Visualizza appartamento">
                             </form>
                             @endif
                         </div>

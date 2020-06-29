@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-4">
+              <div class="col-md-12 col-lg-4">
                 <div class="form-group">
                     <label for="n_rooms">Numero Minimo Stanze</label>
                     <div class="d-flex justify-content-left my-2">
@@ -70,7 +70,7 @@
                 </div>
               </div>
 
-              <div class="col-4">
+              <div class="col-md-12 col-lg-4">
                 <div class="form-group">
                     <label for="n_beds">Numero Minimo Letti</label>
                     <div class="d-flex justify-content-left my-2">
@@ -82,7 +82,7 @@
                 </div>
               </div>
 
-              <div class="col-4">
+              <div class="col-md-12 col-lg-4">
                 <div class="form-group">
                     <label for="n_bath">Numero Minimo Bagni</label>
                     <div class="d-flex justify-content-left my-2">
@@ -95,10 +95,10 @@
               </div>
 
             </div>
-            <input id="invia-filtri" type="text" class="btn btn-primary" value="filtra">
+            <input id="invia-filtri" type="text" class="btn btn-primary col-md-12" value="filtra">
         </form>
       @foreach ($homesFiltrate as $key => $home)
-        <div class="row">
+        <div class="row my-4">
           <div class="col-12 box-app" id="{{$home->id}}">
             <div class="left">
               <h5 class="center bg">{!!$home->name!!}</h5>

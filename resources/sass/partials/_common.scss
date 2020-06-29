@@ -34,6 +34,18 @@ nav {
   width: 100%;
 }
 
+// .column {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }
+
 nav ol li {
   background-color: #e9ecef;
+}
+@media (max-width: 960px) {
+  .none {
+    display: none;
+  }
 }

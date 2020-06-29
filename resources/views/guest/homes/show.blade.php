@@ -45,7 +45,26 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col-md-4 my-4">
+          <div class="cubo-center">
+            <h2 class="text-center">Numero camere</h2>
+            <h5 class="text-center">{{$home->n_rooms}}</h5>
+          </div>
+        </div>
+        <div class="col-md-4 my-4">
+          <div class="cubo-center">
+            <h2 class="text-center">Numero letti</h2>
+            <h5 class="text-center">{{$home->n_beds}}</h5>
+          </div>
+        </div>
+        <div class="col-md-4 my-4">
+          <div class="cubo-center">
+            <h2 class="text-center">Numero bagni</h2>
+            <h5 class="text-center">{{$home->n_bath}}</h5>
+          </div>
+        </div>
+      </div>
       <div class="row ">
         <div class="col-12 ">
           <div class="cubo-bis no-bg">

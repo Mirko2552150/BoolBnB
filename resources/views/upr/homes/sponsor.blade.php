@@ -68,12 +68,23 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     @foreach ($sponsors_type as $key => $tipo)
-                                                        <input type="radio" id="{{$tipo['name']}}" name="amount" value="{{$tipo['price']}}">
+                                                        <input class="mx-2" type="radio" id="{{$tipo['name']}}" name="amount" value="{{$tipo['price']}}">
                                                         <label for="{{$tipo['name']}}">{!!$tipo['name']!!} - {!!$tipo['price']!!}</label><br>
                                                     @endforeach
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {{-- <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                          </div>
+                                          <select class="custom-select" id="inputGroupSelect01">
+                                            @foreach ($sponsors_type as $key => $tipo)
+                                            <option id="{{$tipo['name']}}" name="amount" value="{{$tipo['price']}}">{!!$tipo['name']!!} - {!!$tipo['price']!!}</option>
+                                            @endforeach
+                                          </select>
+                                        </div> --}}
 
                                         <div class="bt-drop-in-wrapper">
                                             <div id="bt-dropin"></div>
@@ -83,7 +94,7 @@
                                     <input id="nonce" name="payment_method_nonce" type="hidden" />
                                     {{-- <input type="hidden" name="home_id" value="{{$home_id}}"> --}}
 
-                                    <button class="button" type="submit"><span>Paga</span></button>
+                                    <button class="button btn btn-primary col-md-12" type="submit"><span>Paga</span></button>
                                 </form>
                                 <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
                                 <script>

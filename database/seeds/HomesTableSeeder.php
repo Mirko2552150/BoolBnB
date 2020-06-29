@@ -32,7 +32,7 @@ class HomesTableSeeder extends Seeder
         $home->address = $faker->address();
         $home->long = $faker->longitude(-180, 180);
         $home->lat = $faker->latitude(-90, 90);
-        $home->path = 'https://loremflickr.com/1106/400/hotel?random=' . $i;
+        $home->path = 'https://loremflickr.com/1106/400/home?random=' . $i;
         // salvataggio casa
         $home->save();
 

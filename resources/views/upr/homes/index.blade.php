@@ -39,14 +39,14 @@
             <a href="{{route('upr.homes.create')}}">inserisci nuovo appartamento</a>
           </div>
         </div>
-        <table class="table table-hover table-dark">
+        <table class="table table-sm table-hover table-dark">
           <thead>
             <tr>
               <td>Name</td>
-              <td>Address</td>
-              <td>Square meters</td>
-              <td>Services</td>
-              <td>Preview Photo</td>
+              <td class="none">Address</td>
+              <td class="none">Square meters</td>
+              <td class="none">Services</td>
+              <td class="none">Preview Photo</td>
               <td colspan="4">Actions</td>
             </tr>
           </thead>
@@ -54,9 +54,9 @@
             @foreach ($homes as $key => $home)
               <tr>
                 <td>{{$home->name}}</td>
-                <td>{{$home->address}}</td>
-                <td>{{$home->mq}}</td>
-                <td>
+                <td class="none">{{$home->address}}</td>
+                <td class="none">{{$home->mq}}</td>
+                <td class="none">
                   @foreach ($home['services'] as $key => $service)
                     {{$service->name}}
                     {{-- se NON e' l'ultimo metto la , --}}
@@ -65,12 +65,12 @@
                     @endif
                   @endforeach
                 </td>
-                <td>
+                <td class="none">
 
                   @if (strpos($home->path, 'https://loremflickr') !== false)
                       <img class="img-responsive" style="width: 100%;" src="{!!$home->path!!}" alt="{!!$home->path!!}">
                   @else
-                    <img class="img-responsive" style="width: 100%;" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
+                    <img class="img-responsive" style="width: 100%; height: 66px;" src="{{asset('storage/' . $home->path)}}" alt="{{$home->path}}">
                   @endif
 
                 </td>
@@ -107,13 +107,13 @@
             <h2>Messages</h2>
           </div>
         </div>
-        <table class="table table-hover table-info">
+        <table class="table table-sm table-hover table-info">
           <thead>
             <tr>
               <td>Email</td>
               <td>Testo</td>
               <td>Nome Appartamento</td>
-              <td>Orario</td>
+              <td class="none">Orario</td>
               <td colspan="1">Delete</td>
             </tr>
           </thead>
@@ -125,7 +125,7 @@
                     <td>{{$message->mail}}</td>
                     <td>{{$message->body}}</td>
                     <td>{{$message->name}}</td>
-                    <td>{{$message->created_at}}</td>
+                    <td class="none">{{$message->created_at}}</td>
                     @if (Auth::id() == $message->user_id)
                       <td>
                         <form action="{{route('upr.messages.destroy', $message->id)}}" method="post">

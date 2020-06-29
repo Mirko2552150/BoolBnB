@@ -43,7 +43,7 @@ class GuestController extends Controller
             ->leftJoin('sponsors', 'homes.id', '=', 'sponsors.home_id')
             ->select('homes.*', 'sponsors.expired')
             // ->orderBy('expired', 'desc')
-            ->orderBy('created_at', 'desc') // ordiniamo rispetto alla data di creazione
+            ->orderBy('expired', 'desc') // ordiniamo rispetto alla data di creazione
             ->paginate(15); // sostituisco il GET con paginat
             // ->where('expired', '>', $adesso)
             // ->get();

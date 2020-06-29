@@ -47,6 +47,26 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-md-4 my-4">
+            <div class="cubo-center">
+              <h2 class="text-center">Numero camere</h2>
+              <h5 class="text-center">{{$home->n_rooms}}</h5>
+            </div>
+          </div>
+          <div class="col-md-4 my-4">
+            <div class="cubo-center">
+              <h2 class="text-center">Numero letti</h2>
+              <h5 class="text-center">{{$home->n_beds}}</h5>
+            </div>
+          </div>
+          <div class="col-md-4 my-4">
+            <div class="cubo-center">
+              <h2 class="text-center">Numero bagni</h2>
+              <h5 class="text-center">{{$home->n_bath}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-12 padding">
             <style>
               .padding {
@@ -60,19 +80,19 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-12 my-4 col-lg-4">
               <div class="cubo">
                 <canvas id="statsGrafico"></canvas>
               </div>
 
             </div>
-            <div class="col-4">
+            <div class="col-md-12 my-4 col-lg-4">
               <div class="cubo-center">
                 <h2 class="text-center">VISUALIZZAZIONI TOTALI APPARTAMENTO</h2>
                 <h1 class="text-center" id="visualAppart"></h1>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-12 my-4 col-lg-4">
               <div class="cubo">
                 @if (strpos($home->path, 'https://loremflickr') !== false)
                     <img class="img-responsive" style="width: 100%;" src="{!!$home->path!!}" alt="{!!$home->path!!}">
@@ -82,6 +102,7 @@
               </div>
             </div>
         </div>
+
         {{-- INIZIO : passiamo i dati di lat e long alla mappa tramite due input--}}
         <div class="box invisible">
             <input type="number" class="form-control" id="lat-valore" name="lat" value="{{$home->lat}}">
