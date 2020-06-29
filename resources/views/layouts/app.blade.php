@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      <img class="logo" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F69%2FAirbnb_Logo_B%25C3%25A9lo.svg%2F220px-Airbnb_Logo_B%25C3%25A9lo.svg.png&f=1&nofb=1" alt="">
+                      <a href="{{route('guest.homes.index')}}"><img class="logo" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F69%2FAirbnb_Logo_B%25C3%25A9lo.svg%2F220px-Airbnb_Logo_B%25C3%25A9lo.svg.png&f=1&nofb=1" alt=""></a>
                     </ul>
                     <style>
                       .logo {
